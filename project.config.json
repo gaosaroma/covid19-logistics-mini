@@ -28,7 +28,6 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -40,7 +39,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.0.4",
-  "appid": "wxd8ee5e7f71a75f8a",
+  "appid": "wx83bd58894df5318a",
   "projectname": "covid19-logistics-mini",
   "debugOptions": {
     "hidedInDevtools": []
