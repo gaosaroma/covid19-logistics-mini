@@ -1,0 +1,17 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+
+<view class="poster-con">
+  <image class="poster-img" src="../../media/images/login/poster.png"></image>
+</view>
+
+<view class="login-con">
+  <view class="input-con">
+    <text class="cuIcon-people lg text-gray"></text>
+  </view>
+
+  <view class="input-con">
+  </view>
+</view>
+
+</view>

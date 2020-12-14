@@ -1,0 +1,10 @@
+/* pages/login/login.wxss */
+
+
+.poster-con {
+  width: 100%;
+}
+
+.poster-img {
+  width: 100%;
+}
