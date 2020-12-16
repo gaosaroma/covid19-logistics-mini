@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/register/register",
+    "pages/profile/profile",
     "pages/login/login",
+    "pages/register/register",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/create_logistics/create_logistics"
   ],
   "window": {
     "backgroundTextStyle": "light",

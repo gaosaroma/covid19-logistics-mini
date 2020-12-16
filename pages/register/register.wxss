@@ -63,3 +63,8 @@
 .login-btn {
   margin-top: 100rpx;
 }
+
+.success-icon {
+  width: 88rpx;
+  height: 88rpx;
+}

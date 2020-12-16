@@ -18,16 +18,11 @@
 		<view class="title">注册身份</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker">
-				{{index?picker[index]:''}}
+				{{index?picker[index]:'普通用户'}}
 			</view>
 		</picker>
   </view>
-  
-  <view class="cu-form-group">
-		<view class="title">职务工号</view>
-		<input placeholder=""></input>
-		<!-- <text class="cuIcon-locationfill text-orange"></text> -->
-  </view>
+
   
   <view class="cu-form-group">
 		<view class="title">居住地址</view>
@@ -38,6 +33,11 @@
 		</picker>
   </view>
 
+	<view class="cu-form-group">
+		<view class="title">联系方式</view>
+		<input placeholder=""></input>
+		<!-- <text class="cuIcon-locationfill text-orange"></text> -->
+  </view>
   
   <view class="cu-form-group">
 		<view class="title">手机号码</view>
@@ -56,13 +56,32 @@
 		<input placeholder=""></input>
 		<button class="cu-btn bg-orange shadow">获取验证码</button>
 	</view>
-
-
-
   <view>
-    <button class="login-btn cu-btn block bg-black margin-xl lg button-hover" role="button">立即注册</button>
+    <button class="login-btn cu-btn block bg-black margin-xl lg button-hover" bindtap="bindRegisterTap" data-target="DialogModal1" role="button">
+			<text class="cuIcon-loading2 xl iconfont-spin" wx:if="{{registering}}"></text>
+			<text>{{registering?'注册中...':'立即注册'}}</text>
+		</button>
   </view>
 
-</view>
+	<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  	<view class="cu-dialog">
+    	<view class="cu-bar bg-white justify-end">
+      	<view class="content">注册成功</view>
+      	<view class="action" bindtap="hideModal">
+        	<text class="cuIcon-close text-red"></text>
+      	</view>
+    	</view>
+    	<view class="bg-white padding-lg">
+      	<image class="success-icon" src="../../media/images/register/success.png"></image>
+    	</view>
+    	<view class="cu-bar bg-white justify-end">
+      	<view class="action">
+        	<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        	<button class="cu-btn bg-green margin-left" bindtap="bindLoginTap">去登陆</button>
+      	</view>
+    	</view>
+  		</view>
+		</view>
+	</view>
 
 </view>

@@ -1,47 +1,13 @@
-// pages/register/register.js
+// pages/create_logistics/create_logistics.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    region: ['广东省', '广州市', '海珠区'],
-    index: null,
-    picker: ['普通用户', '供应商'],
-    registering: false
+
   },
 
-  bindRegisterTap: function(e) {
-    this.setData({
-      registering: true
-    })
-    var self = this;
-    setTimeout(function(){
-      self.setData({
-        modalName: e.currentTarget.dataset.target,
-      registering: false,
-      })
-    }, 1000)
-  },
-  hideModal(e) {
-    this.setData({
-      modalName: null
-    })
-  },
-  RegionChange: function(e) {
-    this.setData({
-      region: e.detail.value
-    })
-  },
-  PickerChange(e) {
-    console.log(e);
-    this.setData({
-      index: e.detail.value
-    })
-  },
-  bindLoginTap: function(e) {
-    wx.navigateBack({})
-  },
   /**
    * 生命周期函数--监听页面加载
    */

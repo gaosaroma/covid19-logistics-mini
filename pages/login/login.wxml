@@ -27,7 +27,7 @@
   
   <view class="sub-con cf margin-top-lg">
     <view class="tagger tag_l radius fl">微信授权</view>
-    <view class="tagger tag_r radius fr">立即注册</view>
+    <view class="tagger tag_r radius fr" bindtap="bindRegisterTap">立即注册</view>
   </view>
 
   <view>
