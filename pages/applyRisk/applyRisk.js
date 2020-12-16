@@ -1,4 +1,4 @@
-// pages/applyCancel/applyCancel.js
+// pages/applyRisk/applyRisk.js
 Page({
 
   /**
@@ -10,11 +10,19 @@ Page({
       ["太仓市中转站", '苏州市中转站']
     ],
     transportationIndex: [0, 0],
-    riskLevel: '高风险',
-    riskColor: 'text-red',
-    riskDescription: '浦东新区出现三例疑似患者',
     index: null,
-    picker: ['消毒', '病毒检测'],
+    picker: ['中风险', '中高风险', '高风险'],
+    imgList: [],
+  },
+
+  scan(e) {
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['barCode', 'qrCode'],
+      success: function(res) {
+        console.log(res)
+      }
+    })
   },
 
   MultiChange(e) {
@@ -52,18 +60,50 @@ Page({
     })
   },
 
-  submit(e) {
-    console.log(e);
+  ChooseImage() {
+    wx.chooseImage({
+      count: 4, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths
+          })
+        }
+      }
+    });
   },
 
-  scan(e) {
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: ['barCode', 'qrCode'],
-      success: function(res) {
-        console.log(res)
+  ViewImage(e) {
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
+  },
+  DelImg(e) {
+    wx.showModal({
+      title: '',
+      content: '确定删除这张照片吗？',
+      cancelText: '取消',
+      confirmText: '确定',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imgList: this.data.imgList
+          })
+        }
       }
     })
+  },
+
+  submit(e) {
+    console.log(e);
   },
 
   /**
