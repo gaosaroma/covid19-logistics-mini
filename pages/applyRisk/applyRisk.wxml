@@ -16,7 +16,7 @@
     </view>
     <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{transportationIndex}}" range="{{transportationSArray}}">
       <view class="picker text-grey">
-        {{transportationSArray[0][transportationIndex[0]]}}，{{transportationSArray[1][transportationIndex[1]]}}
+        {{transportationSArray[0][transportationIndex[0]]}}，{{transportationSArray[1][transportationIndex[1]]}}，{{transportationSArray[2][transportationIndex[2]]}}
       </view>
     </picker>
   </view>

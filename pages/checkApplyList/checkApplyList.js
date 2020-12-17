@@ -3,13 +3,44 @@ Page({
 
   data: {
     TabCur: 0,
+    riskHidden: false,
+    cancelHidden: true,
+    logistcs_list:[
+      {
+        logistics_id: "SF8888888",
+        cur_state: "高风险",
+        cur_state_color: "red",
+        cur_addr: "上海市嘉定区中转站",
+        risk_description: "阿巴阿巴阿巴",
+        apply_time: "2020-12-03 03:53",
+        apply_person: "贺老师",
+        cancel_method: "消毒",
+      },
+      {
+        logistics_id: "SF9999999",
+        cur_state: "中风险",
+        cur_state_color: "orange",
+        cur_addr: "上海市浦东新区中转站",
+        risk_description: "啊啊啊啊啊啊",
+        apply_time: "2020-12-13 04:53",
+        apply_person: "阿圆",
+        cancel_method: "病毒检测",
+      }
+      ],
   },
 
   tabSelect(e) {
+    console.log(e);
     this.setData({
       TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id-1)*60
+      scrollLeft: (e.currentTarget.dataset.id-1)*60,
+      riskHidden: (e.currentTarget.dataset.id==1)?true:false,
+      cancelHidden: (e.currentTarget.dataset.id==1)?false:true,
     })
+  },
+
+  checkItem(e) {
+    console.log(e);
   },
 
   /**

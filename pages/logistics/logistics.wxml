@@ -1,0 +1,39 @@
+<!--pages/logistics/logistics.wxml-->
+<view id="search-box" class="box">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="请输入订单号" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow-blur round">搜索</button>
+    </view>
+  </view>
+</view>
+<view id="card-list" class="box">
+<view class="cu-card case" wx:for="{{logistcs_list}}" wx:key>
+  <view class="cu-item shadow">
+    <view class="cu-tag bg-green">{{item.risk}}</view>
+    <view class="margin-top-sm solid-bottom">
+      <view class="text-content margin-left-sm text-lg">运单号：{{item.logistics_id}}</view>
+    </view>
+    <view class="bg-white padding-xs">
+      <view class="cu-steps">
+        <view class="cu-item padding-top-sm padding-left-sm" wx:for="{{item.src_dest_list}}" wx:key>
+          <view style="font-size:36rpx;" data-index="{{index + 1}}" class="text-black">{{item.city}}</view>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+      <view class="margin-top-sm solid-bottom text-grey">
+        <view class=" padding-xs align-center">
+          <view class="text-content margin-left-sm">当前状态：{{item.cur_state}}</view>
+          <view class="text-content margin-left-sm">当前节点：{{item.cur_addr}}</view>
+          <view class="text-content margin-left-sm">到达时间：{{item.arrival_time}}</view>
+          <view class="text-content margin-left-sm">风险区块查询：{{item.risk_block}}</view>
+        </view>
+    </view>
+      
+  </view>
+  </view>
+  </view>
+</view>

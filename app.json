@@ -1,10 +1,13 @@
 {
   "pages":[
+    "pages/checkCancel/checkCancel",
+    "pages/checkRisk/checkRisk",
     "pages/checkApplyList/checkApplyList",
     "pages/applyRisk/applyRisk",
     "pages/applyCancel/applyCancel",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/logistics/logistics"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -18,12 +21,6 @@
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "list": [
-      {
-        "selectedIconPath": "assets/icons/home.png",
-        "iconPath": "assets/icons/home_light.png",
-        "pagePath": "pages/index/index",
-        "text": "主页"
-      },
       {
         "selectedIconPath": "assets/icons/history.png",
         "iconPath": "assets/icons/history_light.png",
@@ -40,7 +37,19 @@
         "selectedIconPath": "assets/icons/history.png",
         "iconPath": "assets/icons/history_light.png",
         "pagePath": "pages/checkApplyList/checkApplyList",
-        "text": "文章"
+        "text": "查看申请列表"
+      },
+      {
+        "selectedIconPath": "assets/icons/me.png",
+        "iconPath": "assets/icons/me_light.png",
+        "pagePath": "pages/checkRisk/checkRisk",
+        "text": "审核风险"
+      },
+      {
+        "selectedIconPath": "assets/icons/cart.png",
+        "iconPath": "assets/icons/cart_light.png",
+        "pagePath": "pages/checkCancel/checkCancel",
+        "text": "审核核销"
       }
     ]
   },

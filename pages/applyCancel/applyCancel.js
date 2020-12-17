@@ -6,10 +6,11 @@ Page({
    */
   data: {
     transportationSArray: [
+      ["仓库", "交通工具"],
       ["江苏省", "上海市"],
       ["太仓市中转站", '苏州市中转站']
     ],
-    transportationIndex: [0, 0],
+    transportationIndex: [0, 0, 0],
     riskLevel: '高风险',
     riskColor: 'text-red',
     riskDescription: '浦东新区出现三例疑似患者',
@@ -33,14 +34,46 @@ Page({
       case 0:
         switch (data.transportationIndex[0]) {
           case 0:
-            data.transportationSArray[1] = ["太仓市中转站", '苏州市中转站'];
+            data.transportationSArray[1] = ["江苏省", "上海市"];
+            data.transportationSArray[2] = ["太仓市中转站", '苏州市中转站'];
             break;
           case 1:
-            data.transportationSArray[1] = ['嘉定区中转站', '浦东新区中转站'];
+            data.transportationSArray[1] = ['火车', '飞机', '汽车'];
+            data.transportationSArray[2] = ['Z1234', 'D900', 'K666'];
             break;
         }
         data.transportationIndex[1] = 0;
+        data.transportationIndex[2] = 0;
         break;
+      case 1:
+        switch (data.transportationIndex[0]) {
+          case 0:
+            switch (data.transportationIndex[1]) {
+              case 0:
+                data.transportationSArray[2] = ["太仓市中转站", '苏州市中转站'];
+                break;
+              case 1:
+                data.transportationSArray[2] = ['嘉定区中转站', '浦东新区中转站'];
+                break;
+            }
+            break;
+          case 1:
+            switch (data.transportationIndex[1]) {
+              case 0:
+                data.transportationSArray[2] = ['Z1234', 'D900', 'K666'];
+                break;
+              case 1:
+                data.transportationSArray[2] = ['HO1163', 'JI2917'];
+                break;
+              case 2:
+                data.transportationSArray[2] = ['沪A666', '苏B8237', '苏C5236'];
+                break;
+            }
+            break;
+        }
+        data.transportationIndex[2] = 0;
+        break;
+    
     }
     this.setData(data);
   },
