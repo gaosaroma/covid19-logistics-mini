@@ -1,0 +1,72 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+
+  <view class="flex padding-top align-center margin-top bg-white">
+		<view class="tag_send text-white bg-black">寄</view>
+    <view class="text-lg text-black">发货商</view>
+  </view>
+
+	<view class="cu-form-group">
+		<view class="title grey-font">供应商编号</view>
+		<input placeholder=""></input>
+  </view>
+  <view class="cu-form-group">
+		<view class="title grey-font">商品编号</view>
+		<input placeholder=""></input>
+  </view>
+	<view class="cu-form-group">
+		<view class="title grey-font">商品名称</view>
+		<input placeholder=""></input>
+  </view>
+  <view class="cu-form-group">
+		<view class="title grey-font">发货地址</view>
+		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view class="picker" style="color:{{pickerColor}}">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+			</view>
+		</picker>
+  </view>
+  
+	<view class="cu-form-group">
+		<view class="title grey-font">详细地址</view>
+		<input placeholder="" value="{{address}}"></input>
+		<text class="cuIcon-locationfill text-grey" bindtap="bindLocationTap"></text>
+	</view>
+
+
+
+	<view class="flex padding-top align-center margin-top bg-white">
+		<view class="tag_send text-white bg-red">收</view>
+    <view class="text-lg text-black">收件人</view>
+  </view>
+
+	<view class="cu-form-group">
+		<view class="title grey-font">真实姓名</view>
+		<input placeholder=""></input>
+  </view>
+
+	<view class="cu-form-group">
+		<view class="title grey-font">联系方式</view>
+		<input placeholder=""></input>
+  </view>
+
+  <view class="cu-form-group">
+		<view class="title grey-font">收货地址</view>
+		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view class="picker" style="color:{{pickerColor}}">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+			</view>
+		</picker>
+  </view>
+  
+	<view class="cu-form-group">
+		<view class="title grey-font">详细地址</view>
+		<input placeholder="" value="{{address}}"></input>
+	</view>
+
+  <view class="submit-con bg-white padding-bottom">
+    <button class="login-btn cu-btn block bg-black margin-xl lg button-hover" role="button">提交订单</button>
+  </view>
+
+</view>
+

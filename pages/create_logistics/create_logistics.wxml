@@ -1,2 +1,46 @@
 <!--pages/create_logistics/create_logistics.wxml-->
-<text>pages/create_logistics/create_logistics.wxml</text>
+<view class="container">
+
+  <view class="form-container bg-white margin-top">
+    <form>
+      <view class="cu-form-group">
+		    <view class="title">订单编号</view>
+		    <input placeholder="输入订单编号"></input>
+		    <text class="cuIcon-scan text-grey" bindtap="bindQRTap"></text>
+      </view>
+      
+      <view class="cu-form-group">
+		    <view class="title">当前节点</view>
+		    <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
+		 range="{{multiArray}}">
+			    <view class="picker">
+				    {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+			    </view>
+		    </picker>
+      </view>
+
+      <view class="cu-form-group">
+		    <view class="title">下一节点</view>
+		    <picker mode="multiSelector" bindchange="MultiChangeNext" bindcolumnchange="MultiColumnChangeNext" value="{{multiIndexNext}}"
+		 range="{{multiArrayNext}}">
+			    <view class="picker">
+				    {{multiArrayNext[0][multiIndexNext[0]]}}，{{multiArrayNext[1][multiIndexNext[1]]}}
+			    </view>
+		    </picker>
+      </view>
+
+      <view class="cu-form-group">
+		    <view class="title">工号</view>
+		    <input placeholder="输入员工编号"></input>
+      </view>
+
+    </form>  
+
+  </view>
+
+  <view>
+    <button class="create-btn cu-btn block bg-black margin-xl lg button-hover" role="button">创建</button>
+  </view>
+
+
+</view>
