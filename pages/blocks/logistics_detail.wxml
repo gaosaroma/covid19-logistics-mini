@@ -1,0 +1,45 @@
+<!--pages/blocks/block_logistics.wxml-->
+<view class="container">
+
+<view class="form-container bg-white margin-top">
+	
+		<view class="cu-form-group" style="font-weight:bold">
+			<view class="title">区块</view>
+			<text class="title">{{block}}</text>
+		</view>
+		<view class="cu-form-group" style="font-weight:bold">
+			<view class="title">区块高度</view>
+			<text class="title">{{block_height}}</text>
+		</view>
+		<view class="cu-form-group" style="font-weight:bold">
+			<view class="title">时间戳</view>
+			<text class="title">{{time}}</text>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">订单编号</view>
+			<text class="title">{{order_id}}</text>
+		</view>
+		
+		<view class="cu-form-group">
+			<view class="title">当前节点</view>
+			<text class="title">{{cur_ware}}</text>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">下一节点</view>
+			<text class="title">{{next_ware}}</text>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">工号</view>
+			<text class="title">{{worker_id}}</text>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="title">快照风险</view>
+			<text class="title">{{risk}}</text>
+		</view>
+
+</view>
+</view>
+

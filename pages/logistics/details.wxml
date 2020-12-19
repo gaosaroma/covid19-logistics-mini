@@ -1,0 +1,97 @@
+<view id="brief-box">
+  <map
+  id="mapId"
+  class="map"
+  latitude="{{map.latitude}}"
+  longitude="{{map.longitude}}"
+  polyline="{{map.polyline}}"
+  bindmarkertap="onMarkerTap"
+  bindcallouttap="onCalloutTap"
+  bindlabeltap="onLabelTap"
+  style="width: 100%; height: 380px;"
+  scale="{{map.scale}}"
+>
+  <view class="cu-card case">
+      <view class="cu-item shadow" data-idx="{{index}}">
+        <view class="solid-bottom">
+          <view class="cu-tag {{risk===0?'bg-green':'bg-red'}}">{{risk===0?'无风险':'有风险'}}</view>
+          <text class="padding-top-lg padding-left-lg text-right text-sm">运单号：{{logistics_id}}</text>
+        </view>
+        <view class="bg-white">
+          <view class="flex">
+            <view class="flex-sub padding-xs radius">
+              <view class="margin-top-sm solid-bottom">
+                <view class="cu-steps text-lg">
+                <view class="cu-item padding-left-sm">
+                  <view class="text-black">{{src}}</view>
+                </view>
+                <view class="cu-item padding-left-sm">
+                  <view class="text-black">{{dest}}</view>
+                </view>
+              </view>
+              </view>
+              <view class="margin-top-sm solid-bottom text-grey">
+                <view class="text-content margin-left-lg padding-left-lg">{{state}}</view>
+              </view>
+            </view>
+            <view class="flex-twice padding-xs radius">
+              <view class="solid-bottom text-black text-sm">
+                <view class=" padding-xs align-center">
+                  <view class="text-content margin-left-lg">到达时间：{{arrival_time}}</view>
+                  <view class="text-content margin-left-lg">当前节点：{{cur_addr}}</view>
+                  <view class="text-content margin-left-lg">区块：{{risk_block}}</view>
+                </view>
+              </view>
+            </view>
+          </view> 
+      </view>
+      </view>
+  </view>
+</map>
+</view>
+
+<view id="time-line-box">
+  <view class="cu-timeline">
+    <view class="cu-time">{{state}}</view>
+    <view class="cu-item {{index===0?'text-green':''}}" style="padding: 0rpx 30rpx 0rpx 120rpx" wx:for="{{time_line}}" wx:key >
+      <view class="content bg-white">
+        <view class="flex">
+          <view class="flex-sub">
+            <view class="cu-tag {{item.risk===0?'bg-green':'bg-red'}}">{{item.risk===0?'无风险':'有风险'}}</view>
+          </view>
+          <view class="text-sm text-black flex-treble">
+            <view class="text-content">{{item.time_stamp}}</view>
+            <view class="text-content">快件位于{{item.trans_node}}</view>
+        </view>
+        </view>
+        <view class="solid-bottom text-grey text-sm">
+          <view class=" padding-xs align-center">
+            <view class="text-content">工作人员：{{item.worker_name}}</view>
+            <view class="text-content">区块查询：{{item.risk_block}}<text class="cuIcon-copy lg text-grey margin-left-xs"></text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="cu-time">已发出</view>
+    <view class="cu-item" style="padding: 0rpx 30rpx 0rpx 120rpx">
+      <view class="content bg-white">
+        <view class="flex">
+          <view class="flex-sub">
+            <view class="cu-tag {{risk===0?'bg-green':'bg-red'}}">{{shop.risk===0?'无风险':'有风险'}}</view>
+          </view>
+          <view class="text-sm text-black flex-treble">
+            <view class="text-content">{{shop.time_stamp}}</view>
+            <view class="text-content">快件从{{shop.node}}发出</view>
+        </view>
+        </view>
+        <view class="solid-bottom text-grey text-sm">
+          <view class=" padding-xs align-center">
+            <view class="text-content">工作人员：{{shop.name}}</view>
+            <view class="text-content">区块查询：{{shop.risk_block}}<text class="cuIcon-copy lg text-grey margin-left-xs"></text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
