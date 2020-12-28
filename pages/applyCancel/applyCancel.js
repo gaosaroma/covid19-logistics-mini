@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid: '',
+    logistics_id: '',
     transportationSArray: [
       ["仓库", "交通工具"],
       ["江苏省", "上海市"],
@@ -87,6 +89,29 @@ Page({
 
   submit(e) {
     console.log(e);
+    var that = this;
+    var app = getApp();
+    var array = that.data.transportationSArray;
+    var indices = that.data.transportationIndex;
+    var cur_add = array[0][indices[0]]+ array[1][indices[1]]+array[2][indices[2]];
+    console.log(that.data)
+    wx.request({
+      url: 'https://host/apply/cancel',
+      data: {
+        user_id: that.openid,
+        logistics_id: that.logistics_id,
+        cancel_method: that.picker[that.index],
+        cur_addr: cur_add,
+        attached_images: that.imgList
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success: function(result) {
+        console.log(result);
+      }
+    })
   },
 
   scan(e) {
@@ -95,6 +120,37 @@ Page({
       scanType: ['barCode', 'qrCode'],
       success: function(res) {
         console.log(res)
+        this.setData({
+          logistics_id: 'SF8888888'
+        })
+        wx.request({
+          url: 'https://host/logistics/search',
+          data: {
+            id: this.data.logistics_id
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          method: 'GET',
+          success: function(result) {
+            console.log(result);
+            var data = result.data.result[0];
+            var risk = ''; var color = '';
+            if (data.risk == 1) {
+              risk='中风险';
+              color = 'orange';
+            }
+            else if (data.risk==2) {
+              risk='高风险';
+              color = 'red';
+            }
+            that.setData({
+              riskLevel: risk,
+              riskDescription: data.risk_description,
+              riskColor: color,
+            })
+          }
+        })
       }
     })
   },
@@ -103,7 +159,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.getStorageSync({
+      key: 'openid',
+      success (res) {
+        console.log(res.data);
+        that.setData({
+          openid: res.data
+        })
+      }
+    })
   },
 
   /**

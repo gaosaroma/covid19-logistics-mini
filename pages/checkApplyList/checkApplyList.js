@@ -2,10 +2,33 @@
 Page({
 
   data: {
+    openid: '',
     TabCur: 0,
     riskHidden: false,
     cancelHidden: true,
-    logistcs_list:[
+    risk_list:[
+      {
+        logistics_id: "SF8888888",
+        cur_state: "高风险",
+        cur_state_color: "red",
+        cur_addr: "上海市嘉定区中转站",
+        risk_description: "阿巴阿巴阿巴",
+        apply_time: "2020-12-03 03:53",
+        apply_person: "贺老师",
+        cancel_method: "消毒",
+      },
+      {
+        logistics_id: "SF9999999",
+        cur_state: "中风险",
+        cur_state_color: "orange",
+        cur_addr: "上海市浦东新区中转站",
+        risk_description: "啊啊啊啊啊啊",
+        apply_time: "2020-12-13 04:53",
+        apply_person: "阿圆",
+        cancel_method: "病毒检测",
+      }
+      ],
+    cancel_list:[
       {
         logistics_id: "SF8888888",
         cur_state: "高风险",
@@ -47,7 +70,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.getStorageSync({
+      key: 'openid',
+      success (res) {
+        console.log(res.data);
+        that.setData({
+          openid: res.data
+        })
+      }
+    })
+    wx.request({
+      url: 'https://host/apply/list',
+      data: {
+        user_id: that.openid
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      success: function(result) {
+        console.log(result);
+        var data = result.data.result[0];
+        that.setData({
+          risk_list: data.risk_list,
+          cancel_list: data.cancel_list
+        })
+      }
+    })
   },
 
   /**

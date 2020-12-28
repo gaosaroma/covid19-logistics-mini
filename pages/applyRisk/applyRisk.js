@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid: '',
+    logistics_id: '',
+    risk_description: '',
     transportationSArray: [
       ["仓库", "交通工具"],
       ["江苏省", "上海市"],
@@ -22,7 +25,22 @@ Page({
       scanType: ['barCode', 'qrCode'],
       success: function(res) {
         console.log(res)
+        this.setData({
+          logistics_id: 'SF8888888'
+        })
       }
+    })
+  },
+
+  LogisticsIdInput(e) {
+    this.setData({
+      logistics_id: e.detail.value
+    })
+  },
+
+  RiskDesInput(e) {
+    this.setData({
+      risk_description: e.detail.value
     })
   },
 
@@ -137,13 +155,45 @@ Page({
 
   submit(e) {
     console.log(e);
+    var that = this;
+    var array = that.data.transportationSArray;
+    var indices = that.data.transportationIndex;
+    var cur_add = array[0][indices[0]]+ array[1][indices[1]]+array[2][indices[2]];
+    console.log(that.data)
+    wx.request({
+      url: 'https://host/apply/risk',
+      data: {
+        user_id: that.openid,
+        logistics_id: that.logistics_id,
+        cur_state: that.picker[that.index],
+        cur_addr: cur_add,
+        risk_description: that.risk_description,
+        attached_images: that.imgList
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success: function(result) {
+        console.log(result);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.getStorageSync({
+      key: 'openid',
+      success (res) {
+        console.log(res.data);
+        that.setData({
+          openid: res.data
+        })
+      }
+    })
   },
 
   /**

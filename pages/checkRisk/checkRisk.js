@@ -2,15 +2,17 @@
 Page({
 
   data: {
+    openid: '',
     order_id: "SF8888888",
     transportation: '仓库-上海市浦东新区中转站',
     risk_color: 'red',
     risk_level: '高风险',
-    risk_description: '阿巴阿巴阿巴',
+    risk_description: '上海市浦东新区出现多例新冠患者',
     applier: '阿圆老师',
     apply_time: '2020-12-03 12:40:02',
     index: null,
     picker: ['审核通过', '驳回申请'],
+    check_reply: '',
     cardCur: 0,
     photo_list: [{
       id: 0,
@@ -53,11 +55,70 @@ Page({
     })
   },
 
+  CheckReplyInput(e) {
+    this.setData({
+      check_reply: e.detail.value
+    })
+  },
+
+  submit(e) {
+    console.log(e);
+    var that = this;
+    wx.request({
+      url: 'https://host/reply/risk',
+      data: {
+        user_id: that.openid,
+        logistics_id: that.order_id,
+        cur_addr: transportation,
+        check_result: that.picker[that.index],
+        check_reply: that.check_reply
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      success: function(result) {
+        console.log(result);
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.getStorageSync({
+      key: 'openid',
+      success (res) {
+        console.log(res.data);
+        that.setData({
+          openid: res.data
+        })
+      }
+    })
+    wx.request({
+      url: 'https://host/check/risk',
+      data: {
+        user_id: that.openid,
+        logistics_id: that.order_id,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      success: function(result) {
+        console.log(result);
+        reply = result.data.result[0];
+        that.setData({
+          transportation : reply.cur_addr,
+          risk_level : reply.risk_level,
+          risk_color : reply.risk_color,
+          risk_description : reply.risk_description,
+          apply_time : reply.apply_time,
+        })
+      }
+    })
   },
 
   /**

@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/viewMyApply/viewMyApply",
     "pages/checkCancel/checkCancel",
     "pages/checkRisk/checkRisk",
     "pages/checkApplyList/checkApplyList",
@@ -48,8 +49,8 @@
       {
         "selectedIconPath": "assets/icons/cart.png",
         "iconPath": "assets/icons/cart_light.png",
-        "pagePath": "pages/checkCancel/checkCancel",
-        "text": "审核核销"
+        "pagePath": "pages/viewMyApply/viewMyApply",
+        "text": "查看我的申请"
       }
     ]
   },

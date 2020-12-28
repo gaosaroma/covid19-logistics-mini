@@ -1,14 +1,12 @@
-// pages/checkCancel/checkCancel.js
+// pages/viewMyApply/viewMyApply.js
 Page({
 
   data: {
-    openid: '',
     order_id: "SF8888888",
     transportation: '仓库-上海市浦东新区中转站',
     risk_color: 'red',
     risk_level: '高风险',
     risk_description: '上海市浦东新区出现多例新冠患者',
-    cancel_method: '消毒',
     applier: '阿圆老师',
     apply_time: '2020-12-03 12:40:02',
     index: null,
@@ -27,41 +25,17 @@ Page({
       id: 3,
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
     }],
-  },
-
-  PickerChange(e) {
-    console.log(e);
-    this.setData({
-      index: e.detail.value
-    })
-  },
-
-  CheckReplyInput(e) {
-    this.setData({
-      check_reply: e.detail.value
-    })
-  },
-
-  submit(e) {
-    console.log(e);
-    var that = this;
-    wx.request({
-      url: 'https://host/reply/cancel',
-      data: {
-        user_id: that.openid,
-        logistics_id: that.order_id,
-        cur_addr: transportation,
-        check_result: that.picker[that.index],
-        check_reply: that.check_reply
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      method: 'POST',
-      success: function(result) {
-        console.log(result);
-      }
-    })
+    numList: [{
+      name: '申请成功'
+    }, {
+      name: '待审核'
+    }, {
+      name: '申请通过'
+    },],
+    num: 2,
+    check_reply: '我说可以',
+    check_result: '审核通过',
+    check_result_color: 'green',
   },
 
   /**
@@ -79,7 +53,7 @@ Page({
       }
     })
     wx.request({
-      url: 'https://host/check/cancel',
+      url: 'https://host/apply/result',
       data: {
         user_id: that.openid,
         logistics_id: that.order_id,
@@ -91,12 +65,18 @@ Page({
       success: function(result) {
         console.log(result);
         reply = result.data.result[0];
+        var color = '';
+        if (reply.apply_result == '审核通过'){color = 'green'}
+        else{color='red'}
         that.setData({
           transportation : reply.cur_addr,
           risk_level : reply.risk_level,
           risk_color : reply.risk_color,
           risk_description : reply.risk_description,
           apply_time : reply.apply_time,
+          check_reply: reply.check_reply,
+          check_result: reply.apply_result,
+          check_result_color: color
         })
       }
     })

@@ -1,4 +1,4 @@
-<!--pages/checkRisk/checkRisk.wxml-->
+<!--pages/viewMyApply/viewMyApply.wxml-->
 
 <page>
 <form>
@@ -33,13 +33,6 @@
   </view>
   <view class="cu-form-group">
     <view class="flex solid-bottom align-center" style="margin-right: 17px">
-      <text class="cuIcon-people text-gray" style="margin-right: 10px"></text>
-      <view class="title">申报人</view>
-    </view>
-    <view class="margin-left-sm">{{applier}}</view>
-  </view>
-  <view class="cu-form-group">
-    <view class="flex solid-bottom align-center" style="margin-right: 17px">
       <text class="cuIcon-time text-gray" style="margin-right: 10px"></text>
       <view class="title">申报时间</view>
     </view>
@@ -62,29 +55,33 @@
   
 
   <!-- 审核内容 -->
-  <view class="cu-form-group margin-top">
-    <view class="flex solid-bottom align-center" style="margin-right: 30px">
-      <text class="cuIcon-form lg text-gray" style="margin-right: 10px"></text>
-      <view class="title">审核结果</view>
+  <view class="flex cu-form-group margin-top">
+    <view class="flex solid-bottom align-center">
+      <text class="cuIcon-form lg text-gray"  style="margin-right: 10px"></text>
+      <view class="title" style="padding-right:10rpx">申请状态</view>
     </view>
-    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
-			<view class="picker">
-				{{index?picker[index]:'请选择审核结果'}}
-			</view>
-		</picker>
+    <view class="flex-twice cu-steps padding-sm">
+      <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+        <text class="num" data-index="{{index + 1}}"></text> {{item.name}}
+      </view>
+    </view>
   </view>
   <view class="cu-form-group">
     <view class="flex solid-bottom align-center" style="margin-right: 17px">
       <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
-      <view class="title">审核意见</view>
+      <view class="title">审核回复</view>
     </view>
-    <input placeholder="请输入审核意见" bingdinput='CheckReplyInput'></input>
+    <view class="margin-left-sm">{{check_reply}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center" style="margin-right: 17px">
+      <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
+      <view class="title">审核结果</view>
+    </view>
+    <view class="margin-left-sm text-{{check_result_color}}">{{check_result}}</view>
   </view>
 </form>
 
-<!-- 提交按钮 -->
-<view class="padding flex flex-direction">
-  <button class="cu-btn bg-orange margin-tb-sm lg" bindtap="submit">提交风险审核</button>
-</view>
 </page>
+
 

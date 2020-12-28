@@ -85,7 +85,7 @@
       <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
       <view class="title">审核意见</view>
     </view>
-    <input placeholder="请输入审核意见"></input>
+    <input placeholder="请输入审核意见"  bingdinput='CheckReplyInput'></input>
   </view>
 </form>
 

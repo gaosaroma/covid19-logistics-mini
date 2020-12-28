@@ -24,7 +24,7 @@
 
 <!-- 风险申请列表 -->
 <view id="card-list" class="box" hidden="{{riskHidden}}">
-  <view class="cu-card case" wx:for="{{logistcs_list}}" wx:key>
+  <view class="cu-card case" wx:for="{{risk_list}}" wx:key>
     <view class="cu-card article" bindtap="checkItem">
       <view class="cu-item shadow">
         <view class="title margin-top-sm margin-bottom-sm solid-bottom">
@@ -51,7 +51,7 @@
 
 <!-- 核销申请列表 -->
 <view id="card-list" class="box" hidden="{{cancelHidden}}">
-  <view class="cu-card case" wx:for="{{logistcs_list}}" wx:key>
+  <view class="cu-card case" wx:for="{{cancel_list}}" wx:key>
     <view class="cu-card article" bindtap="checkItem">
       <view class="cu-item shadow">
         <view class="title margin-top-sm margin-bottom-sm solid-bottom">
