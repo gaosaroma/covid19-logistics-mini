@@ -7,8 +7,8 @@
     "pages/applyRisk/applyRisk",
     "pages/applyCancel/applyCancel",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/logistics/logistics"
+    "pages/logistics/logistics",
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
