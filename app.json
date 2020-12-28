@@ -7,8 +7,11 @@
     "pages/applyRisk/applyRisk",
     "pages/applyCancel/applyCancel",
     "pages/index/index",
+    "pages/blocks/search",
+    "pages/blocks/logistics_detail",
     "pages/logistics/logistics",
-    "pages/logs/logs"
+    "pages/logistics/details",
+    "pages/logs/logs"  
   ],
   "window":{
     "backgroundTextStyle":"light",
