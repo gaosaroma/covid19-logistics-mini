@@ -33,6 +33,7 @@ App({
     })
   },
   globalData: {
+    base_url: 'www.google.com/',
     userInfo: null
   }
 })

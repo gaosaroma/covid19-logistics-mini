@@ -9,14 +9,14 @@
   <view class="input-con flex solid-bottom padding align-center">
     <view class="margin-left-lg"><text class="cuIcon-people xl text-gray icon"></text></view>
     <view class="margin-left-sm input-box">
-      <input class="username-input" auto-focus placeholder="请输入用户名"/>
+      <input class="username-input" value="{{form_username}}" bindinput="bindUsernameInput" auto-focus placeholder="请输入用户名"/>
     </view>
     <view class="right-box"><text class="cuIcon-right xl text-orange icon"></text></view>
   </view>
   <view class="input-con flex solid-bottom padding align-center">
     <view class="margin-left-lg"><text class="cuIcon-lock xl text-gray icon"></text></view>
     <view class="margin-left-sm input-box">
-      <input class="password-input" password="true" auto-focus placeholder="请输入密码"/>
+      <input class="password-input" value="{{form_password}}" password="true" auto-focus placeholder="请输入密码"/>
     </view>
     <view class="forget-box">忘记密码？</view>
   </view>
@@ -31,7 +31,7 @@
   </view>
 
   <view>
-    <button class="login-btn cu-btn block bg-black margin-xl lg button-hover" role="button">立即登录</button>
+    <button bindtap="bindLoginTap" class="login-btn cu-btn block bg-black margin-xl lg button-hover" role="button">立即登录</button>
   </view>
 
 </view>

@@ -2,3 +2,8 @@
 .create-btn {
   margin-top: 200rpx;
 }
+
+.success-icon {
+  width: 88rpx;
+  height: 88rpx;
+}

@@ -1,26 +1,62 @@
 {
   "pages": [
-    "pages/order/order",
-    "pages/create_logistics/create_logistics",
-    "pages/login/login",
-    "pages/profile/profile",
-    "pages/register/register",
+    "pages/viewMyApply/viewMyApply",
+    "pages/blocks/search",
+    "pages/blocks/logistics_detail",
+    "pages/logistics/logistics",
+    "pages/logistics/details",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/checkCancel/checkCancel",
+    "pages/checkRisk/checkRisk",
+    "pages/checkApplyList/checkApplyList",
+    "pages/applyRisk/applyRisk",
+    "pages/applyCancel/applyCancel"
   ],
+  "tabBar": {
+    "color": "#BFC2C6",
+    "selectedColor": "#92B6D5",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "selectedIconPath": "assets/icons/history.png",
+        "iconPath": "assets/icons/history_light.png",
+        "pagePath": "pages/applyCancel/applyCancel",
+        "text": "申请核销"
+      },
+      {
+        "selectedIconPath": "assets/icons/home.png",
+        "iconPath": "assets/icons/home_light.png",
+        "pagePath": "pages/applyRisk/applyRisk",
+        "text": "申请风险"
+      },
+      {
+        "selectedIconPath": "assets/icons/history.png",
+        "iconPath": "assets/icons/history_light.png",
+        "pagePath": "pages/checkApplyList/checkApplyList",
+        "text": "查看申请列表"
+      },
+      {
+        "selectedIconPath": "assets/icons/me.png",
+        "iconPath": "assets/icons/me_light.png",
+        "pagePath": "pages/checkRisk/checkRisk",
+        "text": "审核风险"
+      },
+      {
+        "selectedIconPath": "assets/icons/cart.png",
+        "iconPath": "assets/icons/cart_light.png",
+        "pagePath": "pages/viewMyApply/viewMyApply",
+        "text": "查看我的申请"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
-  "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap.json",
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的地理位置将用于获取你的详细地址" 
-    }
-  }
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

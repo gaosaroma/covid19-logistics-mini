@@ -1,10 +1,16 @@
 // pages/profile/profile.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    avatar_url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
+    phone_number: '',
+    identity: {},
+    work_id: '',
+    node: '',
     gridCol: 4,
     iconList: [{
       icon: 'squarecheckfill',
@@ -38,7 +44,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var userinfo = wx.getStorageSync('userinfo');
+    var self = this;
+    if (userinfo) {
+      var json_data = JSON.parse(userinfo);
+      wx.request({
+        url: app.globalData.base_url + '',
+        method: 'GET',
+        data: {
+          'user_id': parseInt(json_data.user_id)
+        },
+        success: function(res) {
+          self.setData({
+            phone_number: res.data.phone_number,
+            identity: res.data.identity,
+            work_id: res.data.work_id,
+            node: res.data.node
+          })
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
   },
 
   /**

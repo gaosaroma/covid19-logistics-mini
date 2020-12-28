@@ -1,26 +1,79 @@
 // pages/create_logistics/create_logistics.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    modalName: null,
+    user_id: null,
+    work_id: 'JD54783520',
     multiArray: [
-      ['仓库节点', '运输节点'],
-      ['嘉定仓库', '青浦仓库', '杨浦仓库', '闵行仓库', '宝山仓库'],
+      [{
+        id: 0,
+        name: '仓库节点'
+      },
+      {
+        id: 1,
+        name: '运输节点'
+      }],
+      [{
+        id: 0,
+        name: '嘉定仓库'
+      },
+      {
+        id: 1,
+        name: '青浦仓库'
+      }]
     ],
     multiArrayNext: [
-      ['仓库节点', '运输节点'],
-      ['嘉定仓库', '青浦仓库', '杨浦仓库', '闵行仓库', '宝山仓库'],
+      [{
+        id: 0,
+        name: '仓库节点'
+      },
+      {
+        id: 1,
+        name: '运输节点'
+      }],
+      [{
+        id: 0,
+        name: '嘉定仓库'
+      },
+      {
+        id: 1,
+        name: '青浦仓库'
+      }]
     ],
     objectMultiArray: [
-      ['嘉定仓库', '青浦仓库', '杨浦仓库', '闵行仓库', '宝山仓库'],
-      ['汽车', '火车', '飞机', '轮船']
+      [{
+        id: 0,
+        name: '嘉定仓库'
+      },
+      {
+        id: 1,
+        name: '青浦仓库'
+      }],
+      [
+        {
+          id: 0,
+          name: '汽车',
+        },
+        {
+          id: 0,
+          name: '火车',
+        }
+      ]
     ],
     multiIndex: [0, 0],
     multiIndexNext: [0, 0]
   },
 
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
   MultiChange(e) {
     this.setData({
       multiIndex: e.detail.value
@@ -72,7 +125,74 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var userinfo = wx.getStorageSync('userinfo');
+    if(userinfo) {
+      var json_data = JSON.parse(userinfo);
+      wx.request({
+        url: app.globalData.base_url + '',
+        method: 'GET',
+        data: {
+          'user_id': parseInt(json_data.user_id)
+        },
+        success: function(e) {
+          var ware_list = e.data.ware_list;
+          var trans_node_list = e.data.trans_node_list;
+          t_multiArray = this.data.multiArray;
+          t_multiArray[1] = ware_list;
+          this.setData({
+            multiArray: t_multiArray,
+            multiArrayNext: t_multiArray,
+            objectMultiArray:[ware_list, trans_node_list],
+            work_id: json_data.work_id,
+            user_id: parseInt(json_data.user_id)
+          })
+        },
+        fail: function(e) {
+          console.log("wx.request error!");
+        }
+      })
+    } else {
+      // wx.navigateTo({
+      //   url: '../login/login',
+      // })
+    }
+  },
 
+
+
+  bindCreateTap: function(e) {
+    var multiIndex = this.data.multiIndex;
+    var objectArray = this.data.objectMultiArray;
+    var multiIndexNext = this.data.multiIndexNext;
+    var modalName = e.currentTarget.dataset.target;
+
+    var curNode = {
+      ware_id: multiIndex[0] == 0 ? objectArray[multiIndex[0]][multiIndex[1]].id : -1,
+      trans_node_id: multiIndex[0] == 0 ? -1 : objectArray[multiIndex[0]][multiIndex[1]].id
+    }
+
+    var nextNode = {
+      ware_id: multiIndexNext[0] == 0 ? objectArray[multiIndexNext[0]][multiIndexNext[1]].id : -1,
+      trans_node_id: multiIndexNext[0] == 0 ? -1 : objectArray[multiIndexNext[0]][multiIndexNext[1]].id
+    }
+
+    wx.request({
+      url: app.globalData.base_url + '',
+      method: 'POST',
+      data: {
+        user_id: this.data.user_id,
+        cur_node: curNode,
+        next_node: nextNode
+      },
+      success: function(e){
+        this.setData({
+          modalName: modalName
+        })
+      },
+      fail: function(e) {
+        console.log("wx.request error!");
+      }
+    })
   },
 
   /**
