@@ -5,43 +5,102 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logistcs_list:[
-      {logistics_id: "SF8888888",
-      src_dest_list: [{
-        city: '深圳市',
-        name:'DJI旗舰店'
-      }, {
-        city: '上海市',
-        name:'栎鹏'
-      }, ],
-      state: "运输中",
-      cur_addr: "上海嘉定宝园营业点",
-      arrival_time: "2020-12-03 03:53",
-      risk_block: "asdjajfaljaoi323fel32alk3",
-      risk:"无风险"},
-      {
-        logistics_id: "SF9999999",
-        src_dest_list: [{
-          city: '长沙市',
-          name:'晓薇'
-        }, {
-          city: '上海市',
-          name:'贺老师'
-        }, ],
-        state: "运输中",
-        cur_addr: "上海嘉定宝园营业点",
-        arrival_time: "2020-12-13 04:53",
-        risk_block: "gjlekjfaljaoi323fel32alk3",
-        risk:"无风险"
-      }
-      ],
+    // logistcs_list:[
+    //   {logistics_id: "SF8888888",
+    //   src_dest_list: [{
+    //     city: '深圳市',
+    //     name:'DJI旗舰店'
+    //   }, {
+    //     city: '上海市',
+    //     name:'栎鹏'
+    //   }, ],
+    //   state: "运输中",
+    //   cur_addr: "上海嘉定宝园营业点",
+    //   arrival_time: "2020-12-03 03:53",
+    //   risk_block: "asdjajfaljaoi323fel32alk3",
+    //   risk:"无风险"},
+    //   {
+    //     logistics_id: "SF9999999",
+    //     src_dest_list: [{
+    //       city: '长沙市',
+    //       name:'晓薇'
+    //     }, {
+    //       city: '上海市',
+    //       name:'贺老师'
+    //     }, ],
+    //     state: "运输中",
+    //     cur_addr: "上海嘉定宝园营业点",
+    //     arrival_time: "2020-12-13 04:53",
+    //     risk_block: "gjlekjfaljaoi323fel32alk3",
+    //     risk:"无风险"
+    //   }
+    //   ],
+    id:"",
+    logistcs_list:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.init()
+  },
 
+  init: function(){
+    console.log("init")
+    // let url=app.globalData.base_url+'/logistics/list'
+    let url='http://127.0.0.1:8000/logistics/list'
+    var that=this
+    wx.request({
+      url: url,
+      data:{},
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res.data)
+        let data=JSON.parse(res.data)
+        that.setData({
+          logistcs_list:data
+        })
+
+      },
+      complete(res){
+        console.log(res.data)
+        that.setData({
+          logistcs_list:[
+            {logistics_id: "SF8888888",
+            src_dest_list: [{
+              city: '深圳市',
+              name:'DJI旗舰店'
+            }, {
+              city: '上海市',
+              name:'栎鹏'
+            }, ],
+            state: "运输中",
+            cur_addr: "上海嘉定宝园营业点",
+            arrival_time: "2020-12-03 03:53",
+            risk_block: "asdjajfaljaoi323fel32alk3",
+            risk:"无风险"},
+            {
+              logistics_id: "SF9999999",
+              src_dest_list: [{
+                city: '长沙市',
+                name:'晓薇'
+              }, {
+                city: '上海市',
+                name:'贺老师'
+              }, ],
+              state: "运输中",
+              cur_addr: "上海嘉定宝园营业点",
+              arrival_time: "2020-12-13 04:53",
+              risk_block: "gjlekjfaljaoi323fel32alk3",
+              risk:"无风险"
+            }
+            ]
+        })
+      }
+    })
   },
 
   /**
@@ -93,8 +152,58 @@ Page({
 
   },
 
-  showDetail: function(env){
-    console.log(env.currentTarget)
-    wx.navigateTo({url:'details'})
-  }
+  showDetail: function(e){
+    var that = this
+    let idx=e.currentTarget.dataset.idx
+    let id = that.data.logistcs_list[idx].logistics_id
+    wx.navigateTo({url:'../../pages/logistics/details?id='+id})
+  },
+
+  getInputValue:function(e){
+    this.setData({
+      id:e.detail.value
+    })
+  },
+
+  search: function(){
+    console.log("in search")
+    // let url=app.globalData.base_url+'/block/search'
+    let url='http://127.0.0.1:8000/logistics/search'
+    console.log(this.data.id)
+    var that=this
+    wx.request({
+      url: url,
+      data:{
+        id:this.data.id
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res.data)
+        let data=JSON.parse(res.data)
+        that.setData({
+          logistcs_list:data
+        })
+      },
+      complete(res){
+        console.log(res.data)
+        that.setData({
+          logistcs_list: [{logistics_id: "SF8888888",
+          src_dest_list: [{
+            city: '深圳市',
+            name:'DJI旗舰店'
+          }, {
+            city: '上海市',
+            name:'栎鹏'
+          }, ],
+          state: "运输中",
+          cur_addr: "上海嘉定宝园营业点",
+          arrival_time: "2020-12-03 03:53",
+          risk_block: "asdjajfaljaoi323fel32alk3",
+          risk:"无风险"},]
+        })
+      }
+    })
+  },
 })

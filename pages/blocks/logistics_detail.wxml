@@ -5,7 +5,7 @@
 	
 		<view class="cu-form-group" style="font-weight:bold">
 			<view class="title">区块</view>
-			<text class="title">{{block}}</text>
+			<text class="title">{{block_id}}</text>
 		</view>
 		<view class="cu-form-group" style="font-weight:bold">
 			<view class="title">区块高度</view>

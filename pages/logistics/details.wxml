@@ -5,6 +5,7 @@
   latitude="{{map.latitude}}"
   longitude="{{map.longitude}}"
   polyline="{{map.polyline}}"
+  markers="{{map.markers}}"
   bindmarkertap="onMarkerTap"
   bindcallouttap="onCalloutTap"
   bindlabeltap="onLabelTap"
