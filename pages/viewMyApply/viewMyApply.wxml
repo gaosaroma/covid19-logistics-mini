@@ -1,0 +1,87 @@
+<!--pages/viewMyApply/viewMyApply.wxml-->
+
+<page>
+<form>
+  <!-- 风险内容 -->
+  <view class="cu-form-group margin-top">
+    <view class="flex solid-bottom align-center" style="margin-right: 30px">
+      <text class="cuIcon-form lg text-gray" style="margin-right: 10px"></text>
+      <view class="title">订单号</view>
+    </view>
+    <view class="margin-left-sm">{{order_id}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center">
+      <text class="cuIcon-location lg text-gray" style="margin-right: 10px"></text>
+      <view class="title">运输节点</view>
+    </view>
+    <view class="margin-left-sm">{{transportation}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center">
+      <text class="cuIcon-sort text-gray" style="margin-right: 10px"></text>
+      <view class="title">风险等级</view>
+    </view>
+    <view class="margin-left-sm text-{{risk_color}}">{{risk_level}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center" style="margin-right: 17px">
+      <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
+      <view class="title">风险描述</view>
+    </view>
+    <view class="margin-left-sm">{{risk_description}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center" style="margin-right: 17px">
+      <text class="cuIcon-time text-gray" style="margin-right: 10px"></text>
+      <view class="title">申报时间</view>
+    </view>
+    <view class="margin-left-sm">{{apply_time}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center" style="margin-right: 17px">
+      <text class="cuIcon-album text-gray" style="margin-right: 10px"></text>
+      <view class="title">附件图片</view>
+    </view>
+  </view>
+  <view class="bg-white padding">
+    <view class="grid col-4 grid-square">
+      <view class="case" wx:for="{{photo_list}}" wx:key>
+        <image id="{{item.id}}" mode="aspectFill" src="{{item.url}}" bindtap='clickImg'></image>
+      </view>
+    </view>
+  </view>
+  
+  
+
+  <!-- 审核内容 -->
+  <view class="flex cu-form-group margin-top">
+    <view class="flex solid-bottom align-center">
+      <text class="cuIcon-form lg text-gray"  style="margin-right: 10px"></text>
+      <view class="title" style="padding-right:10rpx">申请状态</view>
+    </view>
+    <view class="flex-twice cu-steps padding-sm">
+      <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+        <text class="num" data-index="{{index + 1}}"></text> {{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center" style="margin-right: 17px">
+      <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
+      <view class="title">审核回复</view>
+    </view>
+    <view class="margin-left-sm">{{check_reply}}</view>
+  </view>
+  <view class="cu-form-group">
+    <view class="flex solid-bottom align-center" style="margin-right: 17px">
+      <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
+      <view class="title">审核结果</view>
+    </view>
+    <view class="margin-left-sm text-{{check_result_color}}">{{check_result}}</view>
+  </view>
+</form>
+
+</page>
+
+

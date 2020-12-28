@@ -1,0 +1,78 @@
+<!--pages/checkApplyList/checkApplyList.wxml-->
+<!-- 双列tab表 -->
+<scroll-view scroll-x class="bg-orange nav text-center">
+  <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-camerafill"></text> 风险申请列表
+  </view>
+  <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-upstagefill"></text> 核销申请列表
+  </view>
+</scroll-view>
+
+<!-- 搜索栏 -->
+<view id="search-box" class="box">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="请输入订单号" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow-blur round">搜索</button>
+    </view>
+  </view>
+</view>
+
+<!-- 风险申请列表 -->
+<view id="card-list" class="box" hidden="{{riskHidden}}">
+  <view class="cu-card case" wx:for="{{risk_list}}" wx:key>
+    <view class="cu-card article" bindtap="checkItem">
+      <view class="cu-item shadow">
+        <view class="title margin-top-sm margin-bottom-sm solid-bottom">
+            <view class="text-content margin-left-sm text-lg">订单号：{{item.logistics_id}}</view>
+          </view>
+        <view class="flex content">
+          <view class="flex-treble margin-top-sm solid-bottom text-grey">
+            <view class="adding-xs align-center">
+              <view class="margin-left-sm">运输节点：{{item.cur_addr}}</view>
+              <view class="margin-left-sm">风险描述：{{item.risk_description}}</view>
+              <view class="margin-left-sm">申报人：{{item.apply_person}}</view>
+              <view class="margin-left-sm">申报时间：{{item.apply_time}}</view>
+            </view>
+            <view>
+              <view class="cu-tag bg-{{item.cur_state_color}} light round margin-top-sm">{{item.cur_state}}</view>
+            </view>
+          </view>
+          <image class="flex-sub basis-xs margin-left-sm" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 核销申请列表 -->
+<view id="card-list" class="box" hidden="{{cancelHidden}}">
+  <view class="cu-card case" wx:for="{{cancel_list}}" wx:key>
+    <view class="cu-card article" bindtap="checkItem">
+      <view class="cu-item shadow">
+        <view class="title margin-top-sm margin-bottom-sm solid-bottom">
+            <view class="text-content margin-left-sm text-lg">订单号：{{item.logistics_id}}</view>
+          </view>
+        <view class="flex content">
+          <view class="flex-treble margin-top-sm solid-bottom text-grey">
+            <view class="adding-xs align-center">
+              <view class="margin-left-sm">运输节点：{{item.cur_addr}}</view>
+              <view class="margin-left-sm">风险描述：{{item.risk_description}}</view>
+              <view class="margin-left-sm">核销人：{{item.apply_person}}</view>
+              <view class="margin-left-sm">申请核销时间：{{item.apply_time}}</view>
+            </view>
+            <view>
+              <view class="cu-tag bg-{{item.cur_state_color}} light round margin-top-sm">{{item.cur_state}}</view>
+              <view class="cu-tag bg-grey light round margin-top-sm">{{item.cancel_method}}</view>
+            </view>
+          </view>
+          <image class="flex-sub basis-xs margin-left-sm" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
