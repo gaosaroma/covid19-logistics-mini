@@ -1,0 +1,18 @@
+/* pages/order/order.wxss */
+
+.tag_send {
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  padding: 4rpx 10rpx;
+  margin-right: 20rpx;
+}
+
+.grey-font {
+  color: #777777;
+}
+
+.submit-con {
+  position: absolute;
+  width: 100%;
+  bottom: 0rpx;
+}

@@ -1,0 +1,70 @@
+/* pages/register/register.wxss */
+
+/* pages/login/login.wxss */
+
+
+.poster-con {
+  width: 100%;
+}
+
+.poster-img {
+  width: 100%;
+}
+
+.icon{
+  font-size: 24px;
+}
+
+.input-box {
+  width: 75%;
+}
+
+.input-con input {
+  border: none;
+  border-bottom: 1px solid #DFDFDF;
+  text-align: left;
+  padding: 0px;
+  padding-right: 25%;
+}
+
+.forget-box{
+  position: absolute;
+  right: 10%;
+}
+
+.right-box {
+  right: 12%;
+}
+
+.rm-pwd-con {
+  font-size: 24rpx;
+  position: absolute;
+  right: 12%;
+}
+
+.radio-box {
+  transform: scale(0.5);
+}
+
+.sub-con {
+  padding-top: 30rpx;
+  padding-left: 9%;
+  padding-right: 12%;
+}
+
+.tagger {
+  border-radius: 2px;
+  border: 1px solid #f37b1d;
+  color: #f37b1d;
+  padding: 2rpx 6rpx;
+  font-size: 20rpx;
+}
+
+.login-btn {
+  margin-top: 100rpx;
+}
+
+.success-icon {
+  width: 88rpx;
+  height: 88rpx;
+}

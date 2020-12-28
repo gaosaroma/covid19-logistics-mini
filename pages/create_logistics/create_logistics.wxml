@@ -1,0 +1,66 @@
+<!--pages/create_logistics/create_logistics.wxml-->
+<view class="container">
+
+  <view class="form-container bg-white margin-top">
+    <form>
+      <view class="cu-form-group">
+		    <view class="title">订单编号</view>
+		    <input placeholder="输入订单编号"></input>
+		    <text class="cuIcon-scan text-grey" bindtap="bindQRTap"></text>
+      </view>
+      
+      <view class="cu-form-group">
+		    <view class="title">当前节点</view>
+		    <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
+		 range="{{multiArray}}" range-key='name'>
+			    <view class="picker">
+				    {{multiArray[0][multiIndex[0]].name}}，{{multiArray[1][multiIndex[1]].name}}
+			    </view>
+		    </picker>
+      </view>
+
+      <view class="cu-form-group">
+		    <view class="title">下一节点</view>
+		    <picker mode="multiSelector" bindchange="MultiChangeNext" bindcolumnchange="MultiColumnChangeNext" value="{{multiIndexNext}}"
+		 range="{{multiArrayNext}}" range-key='name'>
+			    <view class="picker">
+				    {{multiArrayNext[0][multiIndexNext[0]].name}}，{{multiArrayNext[1][multiIndexNext[1]].name}}
+			    </view>
+		    </picker>
+      </view>
+
+      <view class="cu-form-group">
+		    <view class="title">工号</view>
+		    <input disabled="true" value="{{work_id}}" placeholder=""></input>
+      </view>
+
+    </form>  
+
+  </view>
+
+  <view>
+    <button bindtap="bindCreateTap" data-target="DialogModal1" class="create-btn cu-btn block bg-black margin-xl lg button-hover" role="button">创建</button>
+	</view>
+	
+	<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  	<view class="cu-dialog">
+    	<view class="cu-bar bg-white justify-end">
+      	<view class="content">创建成功</view>
+      	<view class="action" bindtap="hideModal">
+        	<text class="cuIcon-close text-red"></text>
+      	</view>
+    	</view>
+    	<view class="bg-white padding-lg">
+      	<image class="success-icon" src="../../media/images/register/success.png"></image>
+    	</view>
+    	<view class="cu-bar bg-white justify-end">
+      	<view class="action">
+        	<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        	<button class="cu-btn bg-green margin-left" bindtap="hideModal">完成</button>
+      	</view>
+    	</view>
+		</view>
+	</view>
+
+
+</view>

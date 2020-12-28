@@ -5,7 +5,6 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
@@ -34,6 +33,7 @@ App({
     })
   },
   globalData: {
+    base_url: 'www.google.com/',
     userInfo: null
   }
 })

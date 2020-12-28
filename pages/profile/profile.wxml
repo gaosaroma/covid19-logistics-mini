@@ -1,0 +1,37 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <view class="cu-list menu-avatar">
+    <view class="cu-item">
+      <view class="cu-avatar round lg" style="background-image:url({{avatar_url}});"></view>
+      <view class="content flex-sub">
+        <view>姓名：贺鹏程</view>
+        <view class="text-grey">联系方式：12345678901</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="worker-info-con bg-white margin-tb-sm padding-tb-sm padding-left-lg">
+    <view>
+      <text class='cuIcon-addressbook lg text-gray margin-right-sm'></text>
+      <text>审核人员</text>
+      <text class="margin-left-lg">工号：2031545</text>
+    </view>
+    <view>
+      <text class='cuIcon-home lg text-gray margin-right-sm'></text>
+      <text>运输节点/仓库节点：沪A888888</text>
+    </view>
+  </view>
+
+
+  <view class="cu-list grid col-{{gridCol}} margin-">
+    <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
+      <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+        <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+          <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+        </view>
+      </view>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+
+</view>

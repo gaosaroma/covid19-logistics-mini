@@ -1,0 +1,92 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+
+  <view class="flex padding-top align-center margin-top bg-white">
+		<view class="tag_send text-white bg-black">寄</view>
+    <view class="text-lg text-black">发货商</view>
+  </view>
+
+	<view class="cu-form-group">
+		<view class="title grey-font">供应商编号</view>
+		<input value="{{supplier_id}}" bindinput="bindSupInput" placeholder=""></input>
+  </view>
+  <view class="cu-form-group">
+		<view class="title grey-font">商品编号</view>
+		<input value="{{product_id}}" bindinput="bindProIDInput" placeholder=""></input>
+  </view>
+	<view class="cu-form-group">
+		<view class="title grey-font">商品名称</view>
+		<input value="{{product_name}}" bindinput="bindProNameInput" placeholder=""></input>
+  </view>
+  <view class="cu-form-group">
+		<view class="title grey-font">发货地址</view>
+		<picker mode="region" bindchange="RegionChangeS" value="{{region_s}}" custom-item="{{customItem}}">
+			<view class="picker" style="color:{{pickerColor}}">
+				{{region_s[0]}}，{{region_s[1]}}，{{region_s[2]}}
+			</view>
+		</picker>
+  </view>
+  
+	<view class="cu-form-group">
+		<view class="title grey-font">详细地址</view>
+		<input placeholder="" value="{{detail_address_s}}"></input>
+		<text class="cuIcon-locationfill text-grey" bindtap="bindLocationTap"></text>
+	</view>
+
+
+	<view class="flex padding-top align-center margin-top bg-white">
+		<view class="tag_send text-white bg-red">收</view>
+    <view class="text-lg text-black">收件人</view>
+  </view>
+
+	<view class="cu-form-group">
+		<view class="title grey-font">真实姓名</view>
+		<input value="{{name}}" bindinput="bindNameInput" placeholder=""></input>
+  </view>
+
+	<view class="cu-form-group">
+		<view class="title grey-font">联系方式</view>
+		<input value="{{contact}}" bindinput="bindContactInput" placeholder=""></input>
+  </view>
+
+  <view class="cu-form-group">
+		<view class="title grey-font">收货地址</view>
+		<picker mode="region" bindchange="RegionChangeR" value="{{region_r}}" custom-item="{{customItem}}">
+			<view class="picker" style="color:{{pickerColor}}">
+				{{region_r[0]}}，{{region_r[1]}}，{{region_r[2]}}
+			</view>
+		</picker>
+  </view>
+  
+	<view class="cu-form-group">
+		<view class="title grey-font">详细地址</view>
+		<input placeholder="" value="{{address}}" bindinput="bindAddressInput"></input>
+	</view>
+
+  <view class="submit-con bg-white padding-bottom">
+    <button bindtap="bindSubmitTap" data-target="DialogModal1" class="login-btn cu-btn block bg-black margin-xl lg button-hover" role="button">提交订单</button>
+	</view>
+	
+
+	<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  	<view class="cu-dialog">
+    	<view class="cu-bar bg-white justify-end">
+      	<view class="content">提交成功</view>
+      	<view class="action" bindtap="hideModal">
+        	<text class="cuIcon-close text-red"></text>
+      	</view>
+    	</view>
+    	<view class="bg-white padding-lg">
+      	<image class="success-icon" src="../../media/images/register/success.png"></image>
+    	</view>
+    	<view class="cu-bar bg-white justify-end">
+      	<view class="action">
+        	<button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        	<button class="cu-btn bg-green margin-left" bindtap="bindLoginTap">完成</button>
+      	</view>
+    	</view>
+  		</view>
+		</view>
+
+</view>
+
