@@ -1,17 +1,17 @@
 {
   "pages":[
+    "pages/blocks/search",
+    "pages/blocks/logistics_detail",
+    "pages/logistics/logistics",
+    "pages/logistics/details",
+    "pages/index/index",
+    "pages/logs/logs"  ,
     "pages/viewMyApply/viewMyApply",
     "pages/checkCancel/checkCancel",
     "pages/checkRisk/checkRisk",
     "pages/checkApplyList/checkApplyList",
     "pages/applyRisk/applyRisk",
-    "pages/applyCancel/applyCancel",
-    "pages/index/index",
-    "pages/blocks/search",
-    "pages/blocks/logistics_detail",
-    "pages/logistics/logistics",
-    "pages/logistics/details",
-    "pages/logs/logs"  
+    "pages/applyCancel/applyCancel"
   ],
   "window":{
     "backgroundTextStyle":"light",
