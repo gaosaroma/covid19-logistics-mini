@@ -37,10 +37,10 @@
         "text": "申请风险"
       },
       {
-        "selectedIconPath": "assets/icons/history.png",
-        "iconPath": "assets/icons/history_light.png",
-        "pagePath": "pages/checkApplyList/checkApplyList",
-        "text": "查看申请列表"
+        "selectedIconPath": "assets/icons/search.png",
+        "iconPath": "assets/icons/search_light.png",
+        "pagePath": "pages/logistics/logistics",
+        "text": "查快递"
       },
       {
         "selectedIconPath": "assets/icons/me.png",
@@ -50,7 +50,7 @@
       },
       {
         "selectedIconPath": "assets/icons/me.png",
-        "iconPath": "assets/icons/cart_light.png",
+        "iconPath": "assets/icons/me_light.png",
         "pagePath": "pages/profile/profile",
         "text": "我的"
       }
