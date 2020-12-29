@@ -1,17 +1,22 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/register/register",
     "pages/viewMyApply/viewMyApply",
     "pages/blocks/search",
     "pages/blocks/logistics_detail",
+    "pages/create_logistics/create_logistics",
     "pages/logistics/logistics",
     "pages/logistics/details",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/checkCancel/checkCancel",
     "pages/checkRisk/checkRisk",
     "pages/checkApplyList/checkApplyList",
     "pages/applyRisk/applyRisk",
-    "pages/applyCancel/applyCancel"
+    "pages/applyCancel/applyCancel",
+    "pages/profile/profile",
+    "pages/order/order",
+    "pages/logs/logs"
   ],
   "tabBar": {
     "color": "#BFC2C6",
@@ -44,10 +49,10 @@
         "text": "审核风险"
       },
       {
-        "selectedIconPath": "assets/icons/cart.png",
+        "selectedIconPath": "assets/icons/me.png",
         "iconPath": "assets/icons/cart_light.png",
-        "pagePath": "pages/viewMyApply/viewMyApply",
-        "text": "查看我的申请"
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
       }
     ]
   },
