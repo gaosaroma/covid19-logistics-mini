@@ -5,34 +5,27 @@
     <form>
       <view class="cu-form-group">
 		    <view class="title">订单编号</view>
-		    <input placeholder="输入订单编号"></input>
+		    <input bindinput="bindOrderIDInput" placeholder="输入订单编号" style="text-align: right;"></input>
 		    <text class="cuIcon-scan text-grey" bindtap="bindQRTap"></text>
       </view>
       
-      <view class="cu-form-group">
+			<view class="cu-form-group">
 		    <view class="title">当前节点</view>
-		    <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}"
-		 range="{{multiArray}}" range-key='name'>
-			    <view class="picker">
-				    {{multiArray[0][multiIndex[0]].name}}，{{multiArray[1][multiIndex[1]].name}}
-			    </view>
-		    </picker>
+		    <input style="text-align: right;" disabled="true" value="{{station_type + '，' + station_name}}" placeholder=""></input>
+			</view>
+			
+			<view class="cu-form-group">
+		    <view class="title">疫情状态</view>
+		    <input style="text-align: right;" disabled="true" value="{{risk_name[risk]}}" placeholder=""></input>
       </view>
 
-      <view class="cu-form-group">
-		    <view class="title">下一节点</view>
-		    <picker mode="multiSelector" bindchange="MultiChangeNext" bindcolumnchange="MultiColumnChangeNext" value="{{multiIndexNext}}"
-		 range="{{multiArrayNext}}" range-key='name'>
-			    <view class="picker">
-				    {{multiArrayNext[0][multiIndexNext[0]].name}}，{{multiArrayNext[1][multiIndexNext[1]].name}}
-			    </view>
-		    </picker>
-      </view>
 
       <view class="cu-form-group">
 		    <view class="title">工号</view>
-		    <input disabled="true" value="{{work_id}}" placeholder=""></input>
-      </view>
+		    <input style="text-align: right;" disabled="true" value="{{work_id}}" placeholder=""></input>
+			</view>
+			
+
 
     </form>  
 

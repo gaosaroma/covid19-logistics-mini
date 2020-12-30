@@ -16,3 +16,8 @@
   width: 100%;
   bottom: 0rpx;
 }
+
+.success-icon {
+  width: 88rpx;
+  height: 88rpx;
+}

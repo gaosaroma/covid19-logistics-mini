@@ -14,19 +14,27 @@ Page({
     registering: false,
     form_name: '',
     form_phone: '',
+    form_pwd: ''
   },
 
   bindNameInput: function(e) {
-    input_context = e.detail.value;
+    var input_context = e.detail.value;
     this.setData({
       form_name: input_context
     })
   },
 
   bindPhoneInput: function(e) {
-    input_context = e.detail.value;
+    var input_context = e.detail.value;
     this.setData({
       form_phone: input_context
+    })
+  },
+
+  bindPwdInput: function(e) {
+    var input_context = e.detail.value;
+    this.setData({
+      form_pwd: input_context
     })
   },
 
@@ -40,31 +48,35 @@ Page({
     var form_phone = this.data.form_phone;
     var form_region = this.data.region;
     var form_index = this.data.index;
+    var form_pwd = this.data.form_pwd;
     wx.login({
       success: function(res) {
         var code = res.code;
         wx.request({
-          url: app.globalData.base_url + '',
+          url: app.globalData.base_url + 'user/register',
           method: 'POST',
           data: {
-            code: code,
-            name: form_name,
-            phone_number: form_phone,
+            jscode: code,
+            username: form_name,
+            telephone: form_phone,
             address: {
               province: form_region[0],
               city: form_region[1],
               district: form_region[2]
             },
-            identity: form_index,
+            type: form_index + 1,
+            passwd: form_pwd
           },
           success: function(e) {
-            if(e.data.success) {
+            if(e.data.code == 200) {
               setTimeout(function(){
                 self.setData({
                   modalName: modal_name,
                   registering: false,
                 })
               }, 500)
+            } else {
+              console.log('register failed!')
             }
           },
           fail: function(e) {
@@ -98,26 +110,26 @@ Page({
     console.log(this.data.index)
   },
   bindLoginTap: function(e) {
-    wx.navigateBack({})
+    wx.navigateBack({});
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var self = this;
-    wx.request({
-      url: app.globalData.base_url,
-      method: 'GET',
-      success: function(e) {
-        var identity_list = e.data.identity_list;
-        self.setData({
-          picker: identity_list
-        })
-      },
-      fail: function(e) {
-        console.log('wx.request error!')
-      }
-    })
+    // var self = this;
+    // wx.request({
+    //   url: app.globalData.base_url,
+    //   method: 'GET',
+    //   success: function(e) {
+    //     var identity_list = e.data.identity_list;
+    //     self.setData({
+    //       picker: identity_list
+    //     })
+    //   },
+    //   fail: function(e) {
+    //     console.log('wx.request error!')
+    //   }
+    // })
   },
 
   /**

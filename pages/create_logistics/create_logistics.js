@@ -6,67 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    order_id: '',
     modalName: null,
-    user_id: null,
-    work_id: 'JD54783520',
-    multiArray: [
-      [{
-        id: 0,
-        name: '仓库节点'
-      },
-      {
-        id: 1,
-        name: '运输节点'
-      }],
-      [{
-        id: 0,
-        name: '嘉定仓库'
-      },
-      {
-        id: 1,
-        name: '青浦仓库'
-      }]
-    ],
-    multiArrayNext: [
-      [{
-        id: 0,
-        name: '仓库节点'
-      },
-      {
-        id: 1,
-        name: '运输节点'
-      }],
-      [{
-        id: 0,
-        name: '嘉定仓库'
-      },
-      {
-        id: 1,
-        name: '青浦仓库'
-      }]
-    ],
-    objectMultiArray: [
-      [{
-        id: 0,
-        name: '嘉定仓库'
-      },
-      {
-        id: 1,
-        name: '青浦仓库'
-      }],
-      [
-        {
-          id: 0,
-          name: '汽车',
-        },
-        {
-          id: 0,
-          name: '火车',
-        }
-      ]
-    ],
-    multiIndex: [0, 0],
-    multiIndexNext: [0, 0]
+    user_id: 0,
+    station_id: 0,
+    station_type: '',
+    station_name: '',
+    risk: 0,
+    work_id: 'JD54783520',  
+    risk_name: ['无风险', '低风险', '高风险']
   },
 
   hideModal(e) {
@@ -74,44 +22,6 @@ Page({
       modalName: null
     })
   },
-  MultiChange(e) {
-    this.setData({
-      multiIndex: e.detail.value
-    })
-  },
-
-  MultiChangeNext(e) {
-    this.setData({
-      multiIndexNext: e.detail.value
-    })
-  },
-
-  MultiColumnChange(e) {
-    let data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    var objectMultiArray = this.data.objectMultiArray;
-    data.multiIndex[e.detail.column] = e.detail.value;
-    if(e.detail.column == 0) {
-      data.multiArray[1] = objectMultiArray[data.multiIndex[0]]
-    }
-    this.setData(data);
-  },
-
-  MultiColumnChangeNext(e) {
-    let data = {
-      multiArrayNext: this.data.multiArrayNext,
-      multiIndexNext: this.data.multiIndexNext
-    };
-    var objectMultiArray = this.data.objectMultiArray;
-    data.multiIndexNext[e.detail.column] = e.detail.value;
-    if(e.detail.column == 0) {
-      data.multiArrayNext[1] = objectMultiArray[data.multiIndexNext[0]]
-    }
-    this.setData(data);
-  },
-
   bindQRTap: function(e) {
     wx.scanCode({
       onlyFromCamera: true,
@@ -126,66 +36,65 @@ Page({
    */
   onLoad: function (options) {
     var userinfo = wx.getStorageSync('userinfo');
+    var self = this;
     if(userinfo) {
       var json_data = JSON.parse(userinfo);
+      self.setData({
+        user_id: json_data.user_id
+      })
       wx.request({
-        url: app.globalData.base_url + '',
+        url: app.globalData.base_url + 'station/get/' + json_data.station_id,
         method: 'GET',
-        data: {
-          'user_id': parseInt(json_data.user_id)
-        },
+        data: {},
         success: function(e) {
-          var ware_list = e.data.ware_list;
-          var trans_node_list = e.data.trans_node_list;
-          t_multiArray = this.data.multiArray;
-          t_multiArray[1] = ware_list;
-          this.setData({
-            multiArray: t_multiArray,
-            multiArrayNext: t_multiArray,
-            objectMultiArray:[ware_list, trans_node_list],
-            work_id: json_data.work_id,
-            user_id: parseInt(json_data.user_id)
-          })
+          if(e.data.code == 200) {
+            let data = e.data.resultObjects[0];
+            console.log(data)
+            self.setData({
+            
+              station_id: data.id,
+              station_name: data.name,
+              station_type: data.transportationType,
+              risk: data.risk,
+              work_id: json_data.work_id
+            });
+          } else {
+            console.log(e.code);
+          }
         },
         fail: function(e) {
           console.log("wx.request error!");
         }
       })
     } else {
-      // wx.navigateTo({
-      //   url: '../login/login',
-      // })
+      wx.navigateTo({
+        url: '../login/login',
+      })
     }
   },
 
+  bindOrderIDInput: function(e){
+    var input_context = e.detail.value;
+    this.setData({
+      order_id: input_context
+    })
+  },
 
 
   bindCreateTap: function(e) {
-    var multiIndex = this.data.multiIndex;
-    var objectArray = this.data.objectMultiArray;
-    var multiIndexNext = this.data.multiIndexNext;
     var modalName = e.currentTarget.dataset.target;
-
-    var curNode = {
-      ware_id: multiIndex[0] == 0 ? objectArray[multiIndex[0]][multiIndex[1]].id : -1,
-      trans_node_id: multiIndex[0] == 0 ? -1 : objectArray[multiIndex[0]][multiIndex[1]].id
-    }
-
-    var nextNode = {
-      ware_id: multiIndexNext[0] == 0 ? objectArray[multiIndexNext[0]][multiIndexNext[1]].id : -1,
-      trans_node_id: multiIndexNext[0] == 0 ? -1 : objectArray[multiIndexNext[0]][multiIndexNext[1]].id
-    }
-
+    var self = this;
     wx.request({
-      url: app.globalData.base_url + '',
+      url: app.globalData.base_url + 'logistics/createLogistics',
       method: 'POST',
       data: {
-        user_id: this.data.user_id,
-        cur_node: curNode,
-        next_node: nextNode
+        submiter: self.data.user_id,
+        orderId: self.data.order_id,
+        stationId: self.data.station_id
       },
       success: function(e){
-        this.setData({
+        console.log(e);
+        self.setData({
           modalName: modalName
         })
       },
