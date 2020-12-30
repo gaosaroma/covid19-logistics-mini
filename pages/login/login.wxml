@@ -16,7 +16,7 @@
   <view class="input-con flex solid-bottom padding align-center">
     <view class="margin-left-lg"><text class="cuIcon-lock xl text-gray icon"></text></view>
     <view class="margin-left-sm input-box">
-      <input class="password-input" value="{{form_password}}" password="true" auto-focus placeholder="请输入密码"/>
+      <input class="password-input" value="{{form_password}}" bindinput="bindPasswordInput" password="true" auto-focus placeholder="请输入密码"/>
     </view>
     <view class="forget-box">忘记密码？</view>
   </view>

@@ -13,12 +13,14 @@ Page({
     pickerColor: '#ffffff',
     address: '',
     supplier_id: '',
-    product_id: '',
     product_name: '',
     detail_address_s: '',
     name: '',
     contact: '',
-    detail_address_r: ''
+    contact_s: '',
+    detail_address_r: '',
+    longitude: null,
+    latitude: null,
   },
 
   bindSupInput: function(e) {
@@ -28,10 +30,10 @@ Page({
     })
   },
 
-  bindProIDInput: function(e) {
+  bindContactSInput: function(e) {
     var input_context = e.detail.value;
     this.setData({
-      product_id: input_context
+      contact_s: input_context
     })
   },
 
@@ -85,6 +87,10 @@ Page({
       success: function(res) {
         var latitude = res.latitude;
         var longitude = res.longitude;
+        that.setData({
+          longitude: longitude,
+          latitude: latitude
+        })
         wx.chooseLocation({
           latitude: latitude,
           longitude: longitude,
@@ -108,17 +114,19 @@ Page({
     var self = this;
     var modal_name = e.currentTarget.dataset.target;
     wx.request({
-      url: app.globalData.base_url+'',
+      url: app.globalData.base_url+'logistics/create',
       method: 'POST',
       data: {
         user_id: parseInt(self.data.user_id),
-        supplier_id: self.data.supplier_id,
-        product_id: self.data.product_id,
+        ship_name: self.data.supplier_id,
         product_name: self.data.product_name,
+        contact_s: self.data.contact_s,
         ship_address: {
           province: self.data.region_s[0],
           city: self.data.region_s[1],
           district: self.data.region_s[2],
+          longitude: self.data.longitude,
+          latitude: self.data.latitude
         },
         ship_detail_address: self.data.detail_address_s,
         name: self.data.name,
@@ -127,11 +135,14 @@ Page({
           province: self.data.region_r[0],
           city: self.data.region_r[1],
           district: self.data.region_r[2],
+          longitude: 116.397228,
+          latitude: 39.909604
         },
         receive_detail_address: self.data.detail_address_r,
       },
       success: function(res){
-        if(res.success) {
+        var data = res.data;
+        if(data.code == 200) {
           self.setData({
             modalName: modal_name
           })
@@ -149,15 +160,22 @@ Page({
   onLoad: function (options) {
     var userinfo = wx.getStorageSync('userinfo');
     if(userinfo) {
-      json_data = JSON.parse(userinfo);
+      var json_data = JSON.parse(userinfo);
       this.setData({
-        user_id: userinfo.user_id
+        user_id: json_data.user_id,
       })
     } else {
-      // wx.navigateTo({
-      //   url: '../login/login',
-      // })
+      wx.navigateTo({
+        url: '../login/login',
+      })
     }
+  },
+
+
+  bindOkTap: function(e) {
+    this.setData({
+      modalName: null
+    })
   },
 
   /**

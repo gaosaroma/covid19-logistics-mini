@@ -34,20 +34,41 @@ Page({
     var form_username = this.data.form_username;
     var form_password = this.data.form_password;
     wx.request({
-      url: app.globalData.base_url + '',
-      method: 'GET',
+      url: app.globalData.base_url + 'user/login',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
       data: {
-        username: form_username,
-        password: form_password
+        telephone: form_username,
+        passwd: form_password,
+        type: 4
       },
       success: function(e) {
-        let user_info = {
-          user_id: e.data.user_id,
-          openid: e.data.openid,
-          identity: e.data.identity,
-          work_id: e.data.work_id
+        if (e.data.code == 200) {
+          let data = e.data.resultObjects[0];
+          console.log(data);
+          let user_info = {
+            user_id: data.id,
+            openid: data.openid,
+            identity: data.type,
+            work_id: 'SF2017060' + data.id,
+            user_name: data.username,
+            user_phone: data.telephone,
+            station_type: data.station.transportationType,
+            station_name: data.station.name,
+            station_id: data.station.id
+          }
+          wx.setStorageSync('userinfo', JSON.stringify(user_info));
+          wx.redirectTo({
+            url: '../profile/profile',
+          })
+        } else {
+          console.log('login failed!');
         }
-        wx.setStorageSync('userinfo', JSON.stringify(user_info))
+      },
+      fail: function(e) {
+        console.log('wx.request error!');
       }
     })
   },
