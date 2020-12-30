@@ -47,8 +47,8 @@ Page({
     wx.request({
       url: globalData.base_url+'apply/submitRisk',
       data: {
-        // submitter: that.user_info.work_id,
-        'submitter': 7,
+        submitter: that.user_info.work_id,
+        // 'submitter': 7,
         'logisticsId': data.logistics_id, //其实是物流编号，订单的一部分
         'stationId': 1,
         'submitComment': data.picker[data.index],
@@ -136,15 +136,14 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    wx.getStorageSync({
-      key: 'user_info',
-      success (res) {
-        console.log(res.data);
-        that.setData({
-          user_info: res.data
-        })
-      }
-    })
+    var userinfo = wx.getStorageSync('userinfo');
+    if(userinfo) {
+      var json_data = JSON.parse(userinfo);
+       // 这里定义来使用userinfo的数据
+       that.setData({
+        user_info: json_data
+      })
+    }
   }
 
 })

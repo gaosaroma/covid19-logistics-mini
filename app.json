@@ -1,24 +1,28 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/applyCancel/applyCancel",
+    "pages/applyRisk/applyRisk",
+    "pages/checkRisk/checkRisk",
+    "custom-tab-bar/index",
+    "pages/index/index",
     "pages/register/register",
     "pages/viewMyApply/viewMyApply",
     "pages/blocks/search",
     "pages/blocks/logistics_detail",
+    "pages/blocks/check_detail",
     "pages/create_logistics/create_logistics",
     "pages/logistics/logistics",
     "pages/logistics/details",
-    "pages/index/index",
     "pages/checkCancel/checkCancel",
-    "pages/checkRisk/checkRisk",
     "pages/checkApplyList/checkApplyList",
-    "pages/applyRisk/applyRisk",
-    "pages/applyCancel/applyCancel",
     "pages/profile/profile",
     "pages/order/order",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/myApplyList/myApplyList"
   ],
   "tabBar": {
+    "custom": true,
     "color": "#BFC2C6",
     "selectedColor": "#92B6D5",
     "borderStyle": "white",
@@ -56,6 +60,9 @@
       }
     ]
   },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -63,5 +70,10 @@
     "navigationBarTextStyle": "black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的地理位置将用于获取你的详细地址" 
+    }
+  }
 }

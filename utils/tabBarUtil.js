@@ -19,8 +19,9 @@ export const commonUser = [
     "text": "我的"
   }
 ]
-// 审核人员
-export const auditor = [
+
+// 供应商
+export const supplier = [
   {
     "selectedIconPath": "assets/icons/block.png",
     "iconPath": "assets/icons/block_light.png",
@@ -34,10 +35,26 @@ export const auditor = [
     "text": "查快递"
   },
   {
-    "selectedIconPath": "assets/icons/risk.png",
-    "iconPath": "assets/icons/risk_light.png",
-    "pagePath": "pages/checkApplyList/checkApplyList",
-    "text": "查审核"
+    "selectedIconPath": "assets/icons/me.png",
+    "iconPath": "assets/icons/me_light.png",
+    "pagePath": "pages/profile/profile",
+    "text": "我的"
+  }
+]
+
+//仓库管理员
+export const wareManager = [
+  {
+    "selectedIconPath": "assets/icons/block.png",
+    "iconPath": "assets/icons/block_light.png",
+    "pagePath": "pages/blocks/search",
+    "text": "查区块"
+  },
+  {
+    "selectedIconPath": "assets/icons/search.png",
+    "iconPath": "assets/icons/search_light.png",
+    "pagePath": "pages/logistics/logistics",
+    "text": "查快递"
   },
   {
     "selectedIconPath": "assets/icons/me.png",
@@ -46,7 +63,6 @@ export const auditor = [
     "text": "我的"
   }
 ]
-
 
 // 工作人员
 export const empolyeeWorker = [
@@ -82,8 +98,38 @@ export const empolyeeWorker = [
   }
 ]
 
-// 供应商
-export const supplier = [
+// 审核人员
+export const auditor = [
+  {
+    "selectedIconPath": "assets/icons/block.png",
+    "iconPath": "assets/icons/block_light.png",
+    "pagePath": "pages/blocks/search",
+    "text": "查区块"
+  },
+  {
+    "selectedIconPath": "assets/icons/search.png",
+    "iconPath": "assets/icons/search_light.png",
+    "pagePath": "pages/logistics/logistics",
+    "text": "查快递"
+  },
+  {
+    "selectedIconPath": "assets/icons/risk.png",
+    "iconPath": "assets/icons/risk_light.png",
+    "pagePath": "pages/checkApplyList/checkApplyList",
+    "text": "查审核"
+  },
+  {
+    "selectedIconPath": "assets/icons/me.png",
+    "iconPath": "assets/icons/me_light.png",
+    "pagePath": "pages/profile/profile",
+    "text": "我的"
+  }
+]
+
+
+
+// 系统管理员
+export const systemManager = [
   {
     "selectedIconPath": "assets/icons/block.png",
     "iconPath": "assets/icons/block_light.png",

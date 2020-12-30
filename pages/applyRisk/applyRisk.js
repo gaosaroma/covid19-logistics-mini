@@ -109,12 +109,10 @@ Page({
     wx.request({
       url: globalData.base_url+'apply/submitRisk',
       data: {
-        // submitter: data.user_info.work_id,
-        'submitter': 7,
+        'submitter': data.user_info.work_id,
+        // 'submitter': 7,
         'logisticsId': data.logistics_id,
-        // cur_state: data.picker[data.index],
-        // cur_addr: cur_add,
-        'stationId': 1,
+        'stationId': data.user_info.station_id,
         'submitComment': data.risk_description,
         'attached_images': data.imgList,
         'type': risk_type,
@@ -152,14 +150,26 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    wx.getStorageSync({
-      key: 'userinfo',
-      success (res) {
-        console.log(res.data);
-        that.setData({
-          user_info: res.data
-        })
-      }
-    })
+    var userinfo = wx.getStorageSync('userinfo');
+    if(userinfo) {
+      var json_data = JSON.parse(userinfo);
+      that.setData({
+        user_info: json_data
+      })
+      // 这里使用userinfo中的data
+
+      // let user_info = {
+      //   user_id: data.id,
+      //   openid: data.openid,
+      //   s
+      //   work_id: 'SF2017060' + data.id,
+      //   user_name: data.username,
+      //   user_phone: data.telephone,
+      //   station_type: data.station.transportationType,
+      //   station_name: data.station.name,
+      //   station_id: data.station.id
+      // }
+
+    }
   }
 })
