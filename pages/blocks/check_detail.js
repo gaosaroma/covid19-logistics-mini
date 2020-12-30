@@ -1,5 +1,5 @@
-// pages/blocks/block_logistics.js
-const app = getApp()
+// pages/blocks/check_detail.js
+const app=getApp()
 Page({
 
   /**
@@ -7,27 +7,38 @@ Page({
    */
   data: {
     isSame:1,
-    list:[
-      {orderId:"21",
-      time:"121",
-      snapshotIdx:"5",
-      cur_ware:"嘉定",
-      worker_name:"浩浩",
+    list:[{
       block_hash:"1212",
       block_height:"1",
-      risk:0,
+      check_id:"1231",
+      logistics_id:"131",
+      risk:1,
+      applier_id:"343",
+      applier_name:"ada",
+      reason:"sdaf",
+      auditor_id:"1341",
+      auditor_name:"fads",
+      picker:1,
+      picker_reason:"dacfad",
+      time:"fadadv",
       fromBlock:1,
     },
-      {orderId:"21",
-      time:"121",
-      snapshotIdx:"5",
-      cur_ware:"嘉定",
-      worker_name:"浩浩",
-      risk:0,
-      fromBlock:0,
-    },
-    ]
-    
+    {
+      check_id:"1231",
+      logistics_id:"131",
+      risk:1,
+      applier_id:"343",
+      applier_name:"ada",
+      reason:"sdaf",
+      auditor_id:"1341",
+      auditor_name:"fads",
+      picker:1,
+      picker_reason:"dacfad",
+      time:"fadadv",
+      fromBlock:0
+    }
+  ]
+
   },
 
   /**
@@ -35,20 +46,17 @@ Page({
    */
   onLoad: function (options) {
     var that=this
-    let order_id=options['id']
-    let snapshot_idx = options['idx']
+    let idx=options['id']
     console.log("in detail")
-    console.log(order_id)
-    console.log(snapshot_idx)
+    console.log(idx)
 
-    let url=app.globalData.base_url+'logistics/compare'
+    let url=app.globalData.base_url+'apply/compare'
 
     var that=this
     wx.request({
       url: url,
       data:{
-        orderId:order_id,
-        id:snapshot_idx
+        id:idx
       },
       header: {
         'content-type': 'application/json'
@@ -65,9 +73,11 @@ Page({
         console.log(that.data)
       },
       complete(res){
+        let data=res.data
+        console.log(data)
       }
     })
-  
+
   },
 
   /**
