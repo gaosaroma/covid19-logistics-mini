@@ -1,4 +1,4 @@
-// pages/checkApplyList/checkApplyList.js
+// pages/myApplyList/myApplyList.js
 Page({
 
   data: {
@@ -67,33 +67,25 @@ Page({
   checkItem(e) {
     console.log(e);
     var index = e.currentTarget.dataset.index;
-    var type = e.currentTarget.dataset.type;
-    if (type=='risk'){
-      wx.navigateTo({
-        url: '/pages/checkRisk/checkRisk?id=' + index,
-      })
-    }
-    else {
-      wx.navigateTo({
-        url: '/pages/checkCancel/checkCancel?id=' + index,
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/viewMyApply/viewMyApply?id=' + index,
+    })
   },
 
   onShow: function (options) {
     var that = this;
     var base_url = getApp().globalData.base_url;
-    wx.getStorageSync({
-      key: 'user_info',
-      success (res) {
-        console.log(res.data);
-        that.setData({
-          user_info: res.data
-        })
-      }
-    })
+    // wx.getStorageSync({
+    //   key: 'user_info',
+    //   success (res) {
+    //     console.log(res.data);
+    //     that.setData({
+    //       user_info: res.data
+    //     })
+    //   }
+    // })
     wx.request({
-      url: base_url+'apply/pending',
+      url: base_url+'apply/bySubmitter',
       data: {
         'id': that.data.user_id
       },

@@ -6,7 +6,7 @@
   <view class="cu-form-group margin-top">
     <view class="flex solid-bottom align-center" style="margin-right: 30px">
       <text class="cuIcon-form lg text-gray" style="margin-right: 10px"></text>
-      <view class="title">订单号</view>
+      <view class="title">申请编号</view>
     </view>
     <view class="margin-left-sm">{{order_id}}</view>
   </view>
@@ -27,7 +27,7 @@
   <view class="cu-form-group">
     <view class="flex solid-bottom align-center" style="margin-right: 17px">
       <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
-      <view class="title">风险描述</view>
+      <view class="title">核销方式</view>
     </view>
     <view class="margin-left-sm">{{risk_description}}</view>
   </view>

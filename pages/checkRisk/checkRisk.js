@@ -3,7 +3,7 @@ Page({
 
   data: {
     openid: '',
-    order_id: "SF8888888",
+    order_id: 8,
     transportation: '仓库-上海市浦东新区中转站',
     risk_color: 'red',
     risk_level: '高风险',
@@ -56,6 +56,7 @@ Page({
   },
 
   CheckReplyInput(e) {
+    console.log(e);
     this.setData({
       check_reply: e.detail.value
     })
@@ -64,14 +65,15 @@ Page({
   submit(e) {
     console.log(e);
     var that = this;
+    var base_url = getApp().globalData.base_url;
+    var api = '';
+    if (that.data.index==0) {api='agree'}
+    else {api='reject'}
     wx.request({
-      url: 'https://host/reply/risk',
+      url: base_url+'apply/'+api,
       data: {
-        user_id: that.openid,
-        logistics_id: that.order_id,
-        cur_addr: transportation,
-        check_result: that.picker[that.index],
-        check_reply: that.check_reply
+        'id': that.data.order_id,
+        'auditComment': that.data.check_reply
       },
       header: {
         'content-type': 'application/json'
@@ -79,94 +81,61 @@ Page({
       method: 'POST',
       success: function(result) {
         console.log(result);
+        if (code==200){
+          wx.showToast({
+            title: '审核成功',
+            icon: 'succes',
+            duration: 1000,
+            mask:true,
+            success:()=>{
+              setTimeout(()=> {
+                  wx.navigateTo({
+                      url:'/pages/checkApplyList/checkApplyList'
+                  })
+              },1000)
+          }
+          })
+        }
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     var that = this;
-    wx.getStorageSync({
-      key: 'openid',
-      success (res) {
-        console.log(res.data);
-        that.setData({
-          openid: res.data
-        })
-      }
-    })
+    var base_url = getApp().globalData.base_url;
+    that.setData({
+      order_id: options.id
+    });
+    // wx.getStorageSync({
+    //   key: 'openid',
+    //   success (res) {
+    //     console.log(res.data);
+    //     that.setData({
+    //       openid: res.data
+    //     })
+    //   }
+    // })
     wx.request({
-      url: 'https://host/check/risk',
+      url: base_url+'apply/getById',
       data: {
-        user_id: that.openid,
-        logistics_id: that.order_id,
+        'id': that.data.order_id
       },
       header: {
         'content-type': 'application/json'
       },
-      method: 'GET',
+      method: 'POST',
       success: function(result) {
         console.log(result);
-        reply = result.data.result[0];
+        var reply = result.data.resultObjects[0];
         that.setData({
-          transportation : reply.cur_addr,
-          risk_level : reply.risk_level,
-          risk_color : reply.risk_color,
-          risk_description : reply.risk_description,
-          apply_time : reply.apply_time,
+          transportation : reply.stationName,
+          risk_level : reply.riskType==1?'中风险':'高风险',
+          risk_color : reply.riskType==1?'orange':'red',
+          risk_description : reply.submitComment,
+          apply_time : reply.submitTime,
         })
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

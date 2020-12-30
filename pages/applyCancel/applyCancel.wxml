@@ -6,7 +6,7 @@
       <text class="cuIcon-form lg text-gray" style="margin-right: 10px"></text>
       <view class="title">订单号</view>
     </view>
-    <input placeholder="请输入订单号或扫码" bingdinput='LogisticsIdInput'></input>
+    <input placeholder="请输入订单号或扫码" bindinput='LogisticsIdInput'></input>
     <text class="cuIcon-scan lg text-gray" style="margin-right: 5px" bindtap="scan"></text>
   </view>
   <view class="cu-form-group">
@@ -14,11 +14,12 @@
       <text class="cuIcon-location lg text-gray" style="margin-right: 10px"></text>
       <view class="title">运输节点</view>
     </view>
-    <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{transportationIndex}}" range="{{transportationSArray}}">
+    <text class="text-center" style="margin-right: 20px">{{station_name}}</text>
+    <!-- <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{transportationIndex}}" range="{{transportationSArray}}">
       <view class="picker text-grey">
         {{transportationSArray[0][transportationIndex[0]]}}，{{transportationSArray[1][transportationIndex[1]]}}，{{transportationSArray[2][transportationIndex[2]]}}
       </view>
-    </picker>
+    </picker> -->
   </view>
   <view class="cu-form-group">
     <view class="flex solid-bottom align-center">
@@ -27,13 +28,13 @@
     </view>
     <text class="{{riskColor}} text-center" style="margin-right: 20px">{{riskLevel}}</text>
   </view>
-  <view class="cu-form-group">
+  <!-- <view class="cu-form-group">
     <view class="flex solid-bottom align-center">
       <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
       <view class="title">风险描述</view>
     </view>
-    <text class="text-center">{{riskDescription}}</text>
-  </view>
+    <text class="text-center {{riskDesColor}}" style="margin-right: 20px">{{riskDescription}}</text>
+  </view> -->
   <view class="cu-form-group">
     <view class="flex solid-bottom align-center">
       <text class="cuIcon-hotfill lg text-gray" style="margin-right: 10px"></text>
@@ -44,6 +45,27 @@
 				{{index?picker[index]:'请选择核销方式'}}
 			</view>
 		</picker>
+	</view>
+  <view class="cu-bar bg-white margin-top">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action">
+			{{imgList.length}}/4
+		</view>
+  </view>
+  <view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
 	</view>
 </form>
 <view class="padding flex flex-direction">

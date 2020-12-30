@@ -2,7 +2,7 @@
 Page({
 
   data: {
-    order_id: "SF8888888",
+    order_id: 8,
     transportation: '仓库-上海市浦东新区中转站',
     risk_color: 'red',
     risk_level: '高风险',
@@ -26,108 +26,85 @@ Page({
       url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
     }],
     numList: [{
-      name: '申请成功'
-    }, {
       name: '待审核'
     }, {
       name: '申请通过'
     },],
-    num: 2,
+    num: 1,
     check_reply: '我说可以',
     check_result: '审核通过',
     check_result_color: 'green',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     var that = this;
-    wx.getStorageSync({
-      key: 'openid',
-      success (res) {
-        console.log(res.data);
-        that.setData({
-          openid: res.data
-        })
-      }
-    })
+    var base_url = getApp().globalData.base_url;
+    that.setData({
+      order_id: options.id
+    });
+    // wx.getStorageSync({
+    //   key: 'openid',
+    //   success (res) {
+    //     console.log(res.data);
+    //     that.setData({
+    //       openid: res.data
+    //     })
+    //   }
+    // })
     wx.request({
-      url: 'https://host/apply/result',
+      url: base_url+'apply/getById',
       data: {
-        user_id: that.openid,
-        logistics_id: that.order_id,
+        'id': that.data.order_id
       },
       header: {
         'content-type': 'application/json'
       },
-      method: 'GET',
+      method: 'POST',
       success: function(result) {
         console.log(result);
-        reply = result.data.result[0];
+        var reply = result.data.resultObjects[0];
         var color = '';
-        if (reply.apply_result == '审核通过'){color = 'green'}
-        else{color='red'}
+        var result = '';
+        var num_list = [{
+          name: '待审核'
+        }, {
+          name: '申请通过'
+        }];
+        var num_index = 1;
+        console.log(typeof reply.status);
+        if (reply.status == 1){
+          color = 'green';
+          result='审核通过';
+        }
+        else if (reply.status == 0){
+          color='orange';
+          result='待审核';
+          num_index=0;
+        }
+        else {
+          console.log('审核未通过');
+          color='red';
+          result='审核未通过';
+          num_list = [{
+            name: '待审核'
+          }, {
+            name: '申请未通过'
+          }];
+        }
         that.setData({
-          transportation : reply.cur_addr,
-          risk_level : reply.risk_level,
-          risk_color : reply.risk_color,
-          risk_description : reply.risk_description,
-          apply_time : reply.apply_time,
-          check_reply: reply.check_reply,
-          check_result: reply.apply_result,
-          check_result_color: color
+          transportation : reply.stationName,
+          risk_level : reply.riskType==1?'中风险':'高风险',
+          risk_color : reply.riskType==1?'orange':'red',
+          risk_description : reply.submitComment,
+          apply_time : reply.submitTime,
+          check_reply: reply.auditComment,
+          check_result: result,
+          check_result_color: color,
+          numList: num_list,
+          num: num_index,
         })
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
