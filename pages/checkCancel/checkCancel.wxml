@@ -26,13 +26,6 @@
   </view>
   <view class="cu-form-group">
     <view class="flex solid-bottom align-center" style="margin-right: 17px">
-      <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
-      <view class="title">风险描述</view>
-    </view>
-    <view class="margin-left-sm">{{risk_description}}</view>
-  </view>
-  <view class="cu-form-group">
-    <view class="flex solid-bottom align-center" style="margin-right: 17px">
       <text class="cuIcon-hotfill text-gray" style="margin-right: 10px"></text>
       <view class="title">核销方式</view>
     </view>
@@ -85,7 +78,7 @@
       <text class="cuIcon-comment text-gray" style="margin-right: 10px"></text>
       <view class="title">审核意见</view>
     </view>
-    <input placeholder="请输入审核意见"  bingdinput='CheckReplyInput'></input>
+    <input placeholder="请输入审核意见"  bindinput='CheckReplyInput'></input>
   </view>
 </form>
 

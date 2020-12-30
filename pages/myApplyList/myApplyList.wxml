@@ -1,4 +1,5 @@
-<!--pages/checkApplyList/checkApplyList.wxml-->
+<!--pages/myApplyList/myApplyList.wxml-->
+
 <!-- 双列tab表 -->
 <scroll-view scroll-x class="bg-orange nav text-center">
   <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
@@ -9,23 +10,10 @@
   </view>
 </scroll-view>
 
-<!-- 搜索栏 -->
-<view id="search-box" class="box">
-  <view class="cu-bar search bg-white">
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" placeholder="请输入订单号" confirm-type="search"></input>
-    </view>
-    <view class="action">
-      <button class="cu-btn bg-green shadow-blur round">搜索</button>
-    </view>
-  </view>
-</view>
-
 <!-- 风险申请列表 -->
 <view id="card-list" class="box" hidden="{{riskHidden}}">
   <view class="cu-card case" wx:for="{{risk_list}}" wx:key>
-    <view class="cu-card article" data-index="{{item.id}}" data-type='risk' bindtap="checkItem">
+    <view class="cu-card article" data-index="{{item.id}}" bindtap="checkItem">
       <view class="cu-item shadow">
         <view class="title margin-top-sm margin-bottom-sm solid-bottom">
             <view class="text-content margin-left-sm text-lg">申请编号：{{item.id}}</view>
@@ -35,11 +23,11 @@
             <view class="adding-xs align-center">
               <view class="margin-left-sm">运输节点：{{item.stationName}}</view>
               <view class="margin-left-sm">风险描述：{{item.submitComment}}</view>
-              <view class="margin-left-sm">申报人：{{item.submitter}}</view>
               <view class="margin-left-sm">申报时间：{{item.submitTime}}</view>
             </view>
             <view>
               <view class="cu-tag bg-{{item.riskType==1?'orange':'red'}} light round margin-top-sm">{{item.riskType==1?'中风险':'高风险'}}</view>
+              <view class="cu-tag bg-{{item.status==0?'grey':(item.status==1?'green':'red')}} light round margin-top-sm">{{item.status==0?'待审核':(item.status==1?'已通过':'未通过')}}</view>
             </view>
           </view>
           <image class="flex-sub basis-xs margin-left-sm" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
@@ -52,7 +40,7 @@
 <!-- 核销申请列表 -->
 <view id="card-list" class="box" hidden="{{cancelHidden}}">
   <view class="cu-card case" wx:for="{{cancel_list}}" wx:key>
-    <view class="cu-card article" data-index="{{item.id}}" data-type='cancel' bindtap="checkItem">
+    <view class="cu-card article" data-index="{{item.id}}" bindtap="checkItem">
       <view class="cu-item shadow">
         <view class="title margin-top-sm margin-bottom-sm solid-bottom">
             <view class="text-content margin-left-sm text-lg">申请编号：{{item.id}}</view>
@@ -62,12 +50,12 @@
             <view class="adding-xs align-center">
               <view class="margin-left-sm">运输节点：{{item.stationName}}</view>
               <!-- <view class="margin-left-sm">风险描述：{{item.risk_description}}</view> -->
-              <view class="margin-left-sm">核销人：{{item.submitter}}</view>
+              <view class="margin-left-sm">核销人：{{item.auditor}}</view>
               <view class="margin-left-sm">申报时间：{{item.submitTime}}</view>
             </view>
             <view>
               <view class="cu-tag bg-{{item.riskType==1?'orange':'red'}} light round margin-top-sm">{{item.riskType==1?'中风险':'高风险'}}</view>
-              <view class="cu-tag bg-grey light round margin-top-sm">{{item.submitComment}}</view>
+              <view class="cu-tag bg-{{item.status==0?'grey':(item.status==1?'green':'red')}} light round margin-top-sm">{{item.status==0?'待审核':(item.status==1?'已通过':'未通过')}}</view>
             </view>
           </view>
           <image class="flex-sub basis-xs margin-left-sm" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
