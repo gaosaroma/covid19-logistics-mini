@@ -4,17 +4,17 @@
     <view class="cu-bar search bg-white">
       <view class="search-form round">
         <text class="cuIcon-search"></text>
-        <input type="text" placeholder="请输入区块号" bindinput='getInputValue' confirm-type="search"></input>
+        <input type="text" placeholder="请输入 '订单号#快照编号' 或 '申请编号'" bindinput='getInputValue' confirm-type="search"></input>
       </view>
       <view class="action">
         <button class="cu-btn bg-green shadow-blur round" bindtap="search">搜索</button>
       </view>
     </view>
   </view>
-  <view id="card-list" class="box">
-    <view class="cu-card case" wx:for="{{list}}" wx:key>
+  <view id="logistics-card-list" class="box" wx:if="{{logistics_list.length>0}}">
+    <view class="cu-card case" wx:for="{{logistics_list}}" wx:key>
       <view class="cu-item shadow" bindtap="showDetail" id="{{index}}" data-idx="{{index}}">
-        <view class="cu-tag bg-green">快照{{item.risk}}</view>
+        <view class="cu-tag {{item.riskLevel==0?'bg-green':(item.riskLevel==1?'bg-orange':'bg-red')}}">快照{{item.riskLevel==0?"无风险":(item.riskLevel==1?"低风险":"高风险")}}</view>
         <view class="margin-top-sm solid-bottom">
           <view class="text-content margin-left-sm text-lg">区块号：{{item.block_id}}</view>
         </view>
@@ -28,14 +28,40 @@
           <view class="margin-top-sm solid-bottom text-grey">
             <view class=" padding-xs align-center">
               <view class="text-content margin-left-sm">订单号：{{item.order_id}}</view>
-              <view class="text-content margin-left-sm">区块高度：{{item.block_height}}</view>
+              <view class="text-content margin-left-sm">快照编号：{{item.snapshot_idx}}</view>
+              <view class="text-content margin-left-sm">负责人员：{{item.worker_name}}</view>
               <view class="text-content margin-left-sm">快照当前节点：{{item.cur_ware}}</view>
-              <view class="text-content margin-left-sm">快照下一节点：{{item.next_ware}}</view>
               <view class="text-content margin-left-sm">快照时间：{{item.time}}</view>
+              <view class="text-content margin-left-sm">区块高度：{{item.block_height}}</view>
             </view>
         </view>
           
       </view>
+      </view>
+      </view>
+  </view>
+  <view id="check-card-list" class="box" wx:if="{{check_list.length>0}}">
+    <view class="cu-card case" wx:for="{{check_list}}" wx:key>
+      <view class="cu-item shadow" bindtap="showDetail" data-idx="{{index}}">
+        <view class="cu-tag {{item.picker==-1?'bg-red':'bg-green'}}">快照{{item.picker==-1?"驳回":"同意"}}</view>
+        <view class="margin-top-sm solid-bottom">
+          <view class="text-content margin-left-sm text-lg">区块号：{{item.block_id}}</view>
+        </view>
+        <view class="bg-white padding-xs">
+          <view class="margin-top-sm solid-bottom text-grey">
+            <view class=" padding-xs align-center">
+              <view class="text-content margin-left-sm">申请编号：{{item.check_id}}</view>
+              <view class="text-content margin-left-sm">订单编号：{{item.order_id}}</view>
+              <view class="text-content margin-left-sm">申请人：{{item.applier_name}}</view>
+              <view class="text-content margin-left-sm">申请类型：{{item.apply_type==1?'申报风险':'核销风险'}}</view>
+              <view class="text-content margin-left-sm" style="font-weight:bold;">风险申请变更为：{{item.risk==0?'无风险':(item.risk==1?'低风险':'高风险')}}</view>
+              <view class="text-content margin-left-sm">审核人员：{{item.auditor_name}}</view>
+              <view class="text-content margin-left-sm">快照时间：{{item.time}}</view>
+              <view class="text-content margin-left-sm">区块高度：{{item.block_height}}</view>
+
+            </view>
+          </view>
+        </view>
       </view>
       </view>
   </view>

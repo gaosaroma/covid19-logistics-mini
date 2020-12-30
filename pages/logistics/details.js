@@ -1,103 +1,10 @@
 // pages/logistics/details.js
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
-  // data: {
-  //   logistics_id: "SF8888888",
-  //   src:"深圳",
-  //   dest:"上海",
-  //   state: "运输中",
-  //   cur_addr: "上海嘉定宝园营业点",
-  //   arrival_time: "2020-12-03 03:53",
-  //   risk_block: "asdjajfaljaoi323fel32alk3",
-  //   risk:0,
-  //   time_line:[
-  //     {
-  //       state:"运输中",
-  //       time_stamp:"2020-12-03 03:53",
-  //       trans_node:"上海嘉定宝园营业点",
-  //       worker_name:"皓皓",
-  //       risk:0,
-  //       risk_block: "asdjajfaljaoi323fel32alk3",
-  //     },
-  //     {
-  //       state:"运输中",
-  //       time_stamp:"2020-12-03 03:53",
-  //       trans_node:"上海嘉定宝园营业点",
-  //       worker_name:"皓皓",
-  //       risk:0,
-  //       risk_block: "asdjajfaljaoi323fel32alk3",
-  //     },
-  //     {
-  //       state:"运输中",
-  //       time_stamp:"2020-12-03 03:53",
-  //       trans_node:"上海嘉定宝园营业点",
-  //       worker_name:"皓皓",
-  //       risk:0,
-  //       risk_block: "asdjajfaljaoi323fel32alk3",
-  //     },
-  //     {
-  //       state:"运输中",
-  //       time_stamp:"2020-12-03 03:53",
-  //       trans_node:"上海嘉定宝园营业点",
-  //       worker_name:"皓皓",
-  //       risk:0,
-  //       risk_block: "asdjajfaljaoi323fel32alk3",
-  //     }
-  //   ],
-  //   shop:{
-  //     state:"已发货",
-  //       time_stamp:"2020-11-30 01:53",
-  //       node:"深圳DJI旗舰店",
-  //       name:"皓皓",
-  //       risk:0,
-  //       risk_block: "asdjajfaljaoi323fel32alk3",
-  //   },
-  //   map:{
-  //   latitude: 23.099994,
-  //   longitude: 113.324520,
-  //   scale:6,
-  //   markers:[{
-  //     longitude: 113.3245211,
-  //     latitude: 23.10229,
-  //     title: "深圳DJI旗舰店",
-  //     iconPath: "../../resources/no_risk.png"
-  //   },{
-  //     longitude: 110.21,
-  //     latitude: 26.2,
-  //     title: "上海嘉定宝园营业点",
-  //     iconPath: "../../resources/no_risk.png"
-  //   }
-
-  //   ],
-    
-  //   polyline: [{
-  //     points: [{
-  //       longitude: 113.3245211,
-  //       latitude: 23.10229
-  //     }, {
-  //       longitude: 110.21,
-  //       latitude: 26.2
-  //     }],
-  //     color:"#0e932e",
-  //     width: 2,
-  //     dottedLine: false
-  //   },{
-  //     points: [{
-  //       longitude: 110.21,
-  //       latitude: 26.2
-  //     }, {
-  //       longitude: 121.47,
-  //       latitude: 31.23
-  //     }],
-  //     color:"#0e932e",
-  //     width: 2,
-  //     dottedLine: false
-  //   },]
-  //   }
-  // },
   data: {
     logistics_id: "SF8888888",
     src:"深圳",
@@ -107,6 +14,7 @@ Page({
     arrival_time: "2020-12-03 03:53",
     risk_block: "asdjajfaljaoi323fel32alk3",
     risk:0,
+    logistics_len:0,
     time_line:[
       {
         state:"运输中",
@@ -150,7 +58,7 @@ Page({
     map:{
     latitude: 23.099994,
     longitude: 113.324520,
-    scale:6,
+    scale:7,
     // markers:[{
     //   longitude: 113.3245211,
     //   latitude: 23.10229,
@@ -216,8 +124,8 @@ Page({
   },
   riskColor:{
     0:"#0e932e",
-    1:"ea9518",
-    2:"d81e06",
+    1:"#ea9518",
+    2:"#d81e06",
 
   },
 
@@ -225,12 +133,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // let id=options['id']
-    // console.log(id)
-    // if (id==null) return
-    
-    // this.init(id)
-    this.parseCoordinate()
+    let id=options['id']
+    console.log(id)
+    if (id==null) return
+    this.init(id)
+    // this.parseCoordinate()
       
 
     this.mapCtx = wx.createMapContext('mapId')
@@ -239,8 +146,8 @@ Page({
 
   init: function(id){
 
-    // let url=app.globalData.base_url+'/block/search'
-    let url='http://127.0.0.1:8000/logistics/select'
+    let url=app.globalData.base_url+'logistics/select'
+    console.log(url)
     console.log(id)
     var that=this
     wx.request({
@@ -251,23 +158,26 @@ Page({
       header: {
         'content-type': 'application/json'
       },
+      method:"POST",
       success(res){
-        console.log(res.data)
-        let data=JSON.parse(res.data)
+        let data=res.data.resultObjects[0]
+        console.log(data)
+        
         that.setData({
-          logistics_id: data.logistics_id,
-          src:data.src,
-          dest:data.dest,
-          state:data.state,
-          cur_addr: data.cur_addr,
-          arrival_time: data.arrival_time,
+          orderId: data.order_id,
+          src:data.src_dest.src.city,
+          dest:data.src_dest.dest.city,
+          state:data.status==1?"运输中":"已完成",
+          cur_addr: data.curr_address,
+          arrival_time: data.arriving_time,
           risk_block: data.risk_block,
           risk:data.risk,
-          time_line:data.time_line,
+          time_line:data.timeline,
           shop:data.shop,
+          logistics_len:data.timeline.length
         })
 
-        this.parseCoordinate()
+        that.parseCoordinate()
 
       },
       complete(res){
@@ -284,7 +194,8 @@ Page({
     var that = this
     var polylineList = []
     var markers =[]
-    this.data.time_line.forEach(node => {
+    console.log(that.data.time_line)
+    that.data.time_line.forEach(node => {
       let cor = node.coordinate
       let risk =node.risk
       
@@ -297,7 +208,9 @@ Page({
         polyline.color=color
 
         polylineList.push(polyline)
-      }else{
+      }
+
+      if(cor.length==1){
         // 仓库：Marker
         var marker = JSON.parse(JSON.stringify(this.marker))
         let iconPath = this.riskIconPath[risk]
@@ -320,7 +233,7 @@ Page({
     
     // 地图锚点
     var first= this.data.time_line[0]
-    var last = this.data.time_line[this.data.time_line.length-1]
+    var last = this.data.time_line[this.data.time_line.length-2]
     let long1 = ((first.coordinate)[0]).longitude
     let long2 = ((last.coordinate)[0]).longitude
     let lat1 = ((first.coordinate)[0]).latitude

@@ -1,11 +1,22 @@
-// pages/create_logistics.js
+// custom-tab-bar/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    selected: 0,
+    color: "#b5b5b5",
+    selectedColor: "#fa8582",
+    list:[]
+  },
+  lifetimes: {
+  // 在组件实例进入页面节点树时赋值
+    attached () {
+      this.setData({
+        list: app.globalData.list
+      })
+    },
   },
 
   /**
