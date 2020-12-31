@@ -1,0 +1,8 @@
+.my-tab-design {
+  bottom: 0px; 
+  position:absolute; 
+  width: 100%; 
+  padding-bottom: 22px; 
+  padding-top: 6px; 
+  height: auto;
+}

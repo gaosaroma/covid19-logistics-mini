@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cur_page: 'create_logistics',
+    tab_bar_list: [],
     order_id: '',
     modalName: null,
     user_id: 0,
@@ -79,6 +81,14 @@ Page({
       order_id: input_context
     })
   },
+  bindTabbarTap: function(e) {
+    var tab_index = parseInt(e.currentTarget.dataset.tabindex);
+    var tab_list = this.data.tab_bar_list;
+    var page = tab_list[tab_index];
+    wx.redirectTo({
+      url: page.page_url,
+    })
+  },
 
 
   bindCreateTap: function(e) {
@@ -115,7 +125,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var tab_list = app.globalData.tab_list;
+    this.setData({
+      tab_bar_list: tab_list
+    })
   },
 
   /**

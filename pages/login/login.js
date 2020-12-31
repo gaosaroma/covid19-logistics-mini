@@ -63,10 +63,12 @@ Page({
             station_name: data.station.name,
             station_id: data.station.id
           }
-          app.globalData.list = tab_style_map[parseInt(data.type)-1];
-          console.log(app.globalData.list);
+          // app.globalData.tab_list = tab_style_map[parseInt(data.type)-1];
+          app.globalData.tab_list = tab_style_map[5];
+          console.log(app.globalData.tab_list);
           wx.setStorageSync('userinfo', JSON.stringify(user_info));
-          wx.navigateTo({
+          
+          wx.redirectTo({
             url: '../profile/profile',
           })
         } else {

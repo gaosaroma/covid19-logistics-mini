@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cur_page: 'check_block',
+    tab_bar_list: [],
     logistics_list:[],
     check_list:[],
     search_input:"",
@@ -16,6 +18,15 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+  
+  bindTabbarTap: function(e) {
+    var tab_index = parseInt(e.currentTarget.dataset.tabindex);
+    var tab_list = this.data.tab_bar_list;
+    var page = tab_list[tab_index];
+    wx.redirectTo({
+      url: page.page_url,
+    })
   },
 
   /**
@@ -29,7 +40,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var tab_list = app.globalData.tab_list;
+    this.setData({
+      tab_bar_list: tab_list
+    })
   },
 
   /**

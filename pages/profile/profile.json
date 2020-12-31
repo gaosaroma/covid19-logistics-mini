@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "profile": "/pages/profile/profile",
+    "apply_risk": "/pages/applyRisk/applyRisk"
+  },
   "navigationBarTitleText": "主页"
 }

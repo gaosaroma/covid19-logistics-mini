@@ -65,4 +65,13 @@
       </view>
       </view>
   </view>
+
+  <view class="cu-bar tabbar bg-white my-tab-design" style="bottom: 0px; position:absolute; width: 100%; padding-bottom: 22px; padding-top: 6px; height: auto;">
+    <view class="action" wx:for="{{tab_bar_list}}">
+      <view bindtap="bindTabbarTap" class="cuIcon-cu-image" data-tabIndex="{{index}}">
+        <image src="{{cur_page == item.page_marker?item.icon_selected_url:item.icon_url}}"></image>
+      </view>
+      <view class="{{cur_page == item.page_marker?'text-orange':'text-grey'}}">{{item.text}}</view>
+    </view>
+  </view>
 </view>

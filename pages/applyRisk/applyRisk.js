@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tab_bar_list:[],
+    cur_page: 'apply_risk',
     user_info: {},
     logistics_id: 1,
     risk_description: '',
@@ -174,22 +176,22 @@ Page({
     }
   },
 
+  bindTabbarTap: function(e) {
+    var tab_index = parseInt(e.currentTarget.dataset.tabindex);
+    var tab_list = this.data.tab_bar_list;
+    var page = tab_list[tab_index];
+    wx.redirectTo({
+      url: page.page_url,
+    })
+  },
+
     /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var g_list = app.globalData.list;
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      var tab_index = 0;
-      for(let i = 0, len=g_list.length; i < len; ++i) {
-        if(g_list[i].pagePath.indexOf("applyRisk") != -1) {
-          tab_index = i;
-        }
-      }
-      this.getTabBar().setData({
-        selected: tab_index,
-        list: g_list
-      })
-    }
+    var tab_list = app.globalData.tab_list;
+    this.setData({
+      tab_bar_list: tab_list
+    })
   }
 })
