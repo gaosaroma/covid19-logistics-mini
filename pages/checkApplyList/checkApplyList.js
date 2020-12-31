@@ -1,7 +1,10 @@
 // pages/checkApplyList/checkApplyList.js
+const app = getApp();
 Page({
 
   data: {
+    cur_page: 'check_apply_list',
+    tab_bar_list: [],
     user_info: '',
     user_id: 7,
     TabCur: 0,
@@ -81,21 +84,24 @@ Page({
   },
 
   onShow: function (options) {
+    var tab_list = app.globalData.tab_list;
+    this.setData({
+      tab_bar_list: tab_list
+    })
     var that = this;
     var base_url = getApp().globalData.base_url;
-    wx.getStorageSync({
-      key: 'user_info',
-      success (res) {
-        console.log(res.data);
-        that.setData({
-          user_info: res.data
-        })
-      }
-    })
+    var userinfo = wx.getStorageSync('userinfo');
+    if(userinfo) {
+      var json_data = JSON.parse(userinfo);
+       // 这里定义来使用userinfo的数据
+       that.setData({
+        user_info: json_data
+      })
+    }
     wx.request({
       url: base_url+'apply/pending',
       data: {
-        'id': that.data.user_id
+        'id': that.data.user_info.work_id
       },
       header: {
         'content-type': 'application/json'
@@ -111,6 +117,16 @@ Page({
       }
     })
     console.log(that.data);
+  },
+
+
+  bindTabbarTap: function(e) {
+    var tab_index = parseInt(e.currentTarget.dataset.tabindex);
+    var tab_list = this.data.tab_bar_list;
+    var page = tab_list[tab_index];
+    wx.redirectTo({
+      url: page.page_url,
+    })
   },
 
 })

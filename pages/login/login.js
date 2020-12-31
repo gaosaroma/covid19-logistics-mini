@@ -1,4 +1,6 @@
 // pages/login/login.js
+import {commonUser, supplier, wareManager, empolyeeWorker, auditor, systemManager} from '../../utils/tabBarUtil'
+
 const app = getApp()
 Page({
 
@@ -7,7 +9,8 @@ Page({
    */
   data: {
     form_username: '',
-    form_password: ''
+    form_password: '',
+    tab_style_map: [commonUser, supplier, wareManager, empolyeeWorker, auditor, systemManager]
   },
 
   bindRegisterTap: function () {
@@ -31,6 +34,7 @@ Page({
   },
 
   bindLoginTap: function(e) {
+    var tab_style_map = this.data.tab_style_map;
     var form_username = this.data.form_username;
     var form_password = this.data.form_password;
     wx.request({
@@ -59,7 +63,11 @@ Page({
             station_name: data.station.name,
             station_id: data.station.id
           }
+          // app.globalData.tab_list = tab_style_map[parseInt(data.type)-1];
+          app.globalData.tab_list = tab_style_map[5];
+          console.log(app.globalData.tab_list);
           wx.setStorageSync('userinfo', JSON.stringify(user_info));
+          
           wx.redirectTo({
             url: '../profile/profile',
           })
@@ -91,7 +99,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

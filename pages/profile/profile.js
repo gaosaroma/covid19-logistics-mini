@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cur_page: 'profile',
+    tab_bar_list: [],
     username: '',
     avatar_url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
     phone_number: '',
@@ -20,119 +22,136 @@ Page({
         icon: 'myfill',
         color: 'orange',
         badge: 120,
-        name: '个人信息'
+        name: '个人信息',
+        link: '../profile/profile'
       },
       {
         id: 2,
         icon: 'locationfill',
         color: 'orange',
         badge: 120,
-        name: '我的地址'
+        name: '我的地址',
+        link: ''
       },
       {
         id: 3,
         icon: 'formfill',
         color: 'orange',
         badge: 22,
-        name: '我的足迹'
+        name: '我的足迹',
+        link: '../logistics/logistics'
       },
       {
         id: 4,
         icon: 'homefill',
         color: 'orange',
         badge: 22,
-        name: '我的仓库'
+        name: '我的仓库',
+        link: ''
       }, 
       {
         id: 5,
         icon: 'homefill',
         color: 'orange',
         badge: 22,
-        name: '查看仓库'
+        name: '查看仓库',
+        link: ''
       }, 
       {
         id: 6,
         icon: 'shopfill',
         color: 'orange',
         badge: 22,
-        name: '我的店铺'
+        name: '我的店铺',
+        link: ''
       }, 
       {
         id: 7,
         icon: 'goodsfill',
         color: 'orange',
         badge: 22,
-        name: '添加商品'
+        name: '添加商品',
+        link: ''
       }, 
       {
         id: 8,
         icon: 'deliver_fill',
         color: 'orange',
         badge: 22,
-        name: '创建物流信息'
+        name: '创建物流信息',
+        link: '../create_logistics/create_logistics'
       }, 
       {
         id: 9,
         icon: 'activityfill',
         color: 'orange',
         badge: 22,
-        name: '添加运输节点'
+        name: '添加运输节点',
+        link: ''
       },
       {
         id: 10,
         icon: 'roundaddfill',
         color: 'orange',
         badge: 22,
-        name: '添加仓库'
+        name: '添加仓库',
+        link: ''
       },
       {
         id: 11,
         icon: 'cartfill',
         color: 'orange',
         badge: 22,
-        name: '订单发货'
+        name: '订单发货',
+        link: '../order/order'
       },
       {
         id: 12,
         icon: 'formfill',
         color: 'orange',
         badge: 22,
-        name: '查看订单'
+        name: '查看订单',
+        link: ''
       },
       {
         id: 13,
         icon: 'friendaddfill',
         color: 'orange',
         badge: 22,
-        name: '人员管理'
+        name: '人员管理',
+        link: ''
       },
       {
         id: 14,
         icon: 'warnfill',
         color: 'orange',
         badge: 22,
-        name: '申报风险'
+        name: '申报风险',
+        link: '../applyRisk/applyRisk'
       },
       {
         id: 15,
         icon: 'infofill',
         color: 'orange',
         badge: 22,
-        name: '申请核销'
+        name: '申请核销',
+        link: '../applyCancel/applyCancel'
       },
       {
         id: 16,
         icon: 'squarecheckfill',
         color: 'orange',
         badge: 22,
-        name: '核销风险'
+        name: '核销风险',
+        link: '../checkRisk/checkRisk'
       },
       {
         id: 17,
         icon: 'attentionfill',
         color: 'orange',
         badge: 22,
-        name: '查看申请'
+        name: '查看申请',
+        link: '../checkApplyList/checkApplyList'
       }
     ],
     identity_map : [
@@ -184,6 +203,15 @@ Page({
     }
   },
 
+  bindTabbarTap: function(e) {
+    var tab_index = parseInt(e.currentTarget.dataset.tabindex);
+    var tab_list = this.data.tab_bar_list;
+    var page = tab_list[tab_index];
+    wx.redirectTo({
+      url: page.page_url,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -195,7 +223,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var tab_list = app.globalData.tab_list;
+    this.setData({
+      tab_bar_list: tab_list
+    })
   },
 
   /**
@@ -231,5 +262,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+
+  bindGridTap: function(e) {
+    var grid_index = parseInt(e.currentTarget.dataset.grid);
+    var module_index = this.data.module_index;
+    var module = this.data.module_list[module_index[grid_index]-1];
+    if(module.link.length != 0) {
+      wx.navigateTo({
+        url: module.link,
+      })
+    } else {
+      return;
+    }
   }
 })

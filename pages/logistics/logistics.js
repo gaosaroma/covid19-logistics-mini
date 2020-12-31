@@ -1,5 +1,5 @@
 // pages/logistics/logistics.js
-const app=getApp()
+const app=getApp();
 
 Page({
 
@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cur_page: 'check_logistics',
+    tab_bar_list: [],
     id:"",
     logistcs_list:[],
   },
@@ -97,13 +99,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1 //选中效果 当前tabBar页面在list中对应的下标， 
-      })
-    }
+    var tab_list = app.globalData.tab_list;
+    this.setData({
+      tab_bar_list: tab_list
+    })
   },
 
+  bindTabbarTap: function(e) {
+    var tab_index = parseInt(e.currentTarget.dataset.tabindex);
+    var tab_list = this.data.tab_bar_list;
+    var page = tab_list[tab_index];
+    wx.redirectTo({
+      url: page.page_url,
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -33,7 +33,8 @@ App({
     })
   },
   globalData: {
-    base_url: '10.60.43.56:8080/',
-    userInfo: null
+    base_url: 'http://10.60.43.56:8080/',
+    userInfo: null,
+    tab_list: []
   }
 })

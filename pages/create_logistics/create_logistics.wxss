@@ -1,6 +1,6 @@
 /* pages/create_logistics/create_logistics.wxss */
 .create-btn {
-  margin-top: 200rpx;
+  margin-top: 100rpx;
 }
 
 .success-icon {

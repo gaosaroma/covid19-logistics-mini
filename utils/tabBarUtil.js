@@ -1,105 +1,172 @@
 // 普通用户
 export const commonUser = [
   {
-    "selectedIconPath": "assets/icons/block.png",
-    "iconPath": "assets/icons/block_light.png",
-    "pagePath": "pages/blocks/search",
-    "text": "查区块"
+    page_marker: 'check_block',
+    icon_url: '../../assets/icons/block_light.png',
+    icon_selected_url: '../../assets/icons/block.png',
+    page_url: '../blocks/search',
+    text: '查区块'
   },
   {
-    "selectedIconPath": "assets/icons/search.png",
-    "iconPath": "assets/icons/search_light.png",
-    "pagePath": "pages/logistics/logistics",
-    "text": "查快递"
+    page_marker: 'check_logistics',
+    icon_url: '../../assets/icons/search_light.png',
+    icon_selected_url: '../../assets/icons/search.png',
+    page_url: '../logistics/logistics',
+    text: '查快递'
   },
   {
-    "selectedIconPath": "assets/icons/me.png",
-    "iconPath": "assets/icons/me_light.png",
-    "pagePath": "pages/profile/profile",
-    "text": "我的"
-  }
-]
-// 审核人员
-export const auditor = [
-  {
-    "selectedIconPath": "assets/icons/block.png",
-    "iconPath": "assets/icons/block_light.png",
-    "pagePath": "pages/blocks/search",
-    "text": "查区块"
-  },
-  {
-    "selectedIconPath": "assets/icons/search.png",
-    "iconPath": "assets/icons/search_light.png",
-    "pagePath": "pages/logistics/logistics",
-    "text": "查快递"
-  },
-  {
-    "selectedIconPath": "assets/icons/risk.png",
-    "iconPath": "assets/icons/risk_light.png",
-    "pagePath": "pages/checkApplyList/checkApplyList",
-    "text": "查审核"
-  },
-  {
-    "selectedIconPath": "assets/icons/me.png",
-    "iconPath": "assets/icons/me_light.png",
-    "pagePath": "pages/profile/profile",
-    "text": "我的"
-  }
-]
-
-
-// 工作人员
-export const empolyeeWorker = [
-  {
-    "selectedIconPath": "assets/icons/block.png",
-    "iconPath": "assets/icons/block_light.png",
-    "pagePath": "pages/blocks/search",
-    "text": "查区块"
-  },
-  {
-    "selectedIconPath": "assets/icons/search.png",
-    "iconPath": "assets/icons/search_light.png",
-    "pagePath": "pages/logistics/logistics",
-    "text": "查快递"
-  },
-  {
-    "selectedIconPath": "assets/icons/logistics.png",
-    "iconPath": "assets/icons/logistics_light.png",
-    "pagePath": "pages/create_logistics/create_logistics",
-    "text": "物流打卡"
-  },
-  {
-    "selectedIconPath": "assets/icons/risk.png",
-    "iconPath": "assets/icons/risk_light.png",
-    "pagePath": "pages/applyRisk/applyRisk",
-    "text": "申报风险"
-  },
-  {
-    "selectedIconPath": "assets/icons/me.png",
-    "iconPath": "assets/icons/me_light.png",
-    "pagePath": "pages/profile/profile",
-    "text": "我的"
+    page_marker: 'profile',
+    icon_url: '../../assets/icons/me_light.png',
+    icon_selected_url: '../../assets/icons/me.png',
+    page_url: '../profile/profile',
+    text: '我的'
   }
 ]
 
 // 供应商
 export const supplier = [
   {
-    "selectedIconPath": "assets/icons/block.png",
-    "iconPath": "assets/icons/block_light.png",
-    "pagePath": "pages/blocks/search",
-    "text": "查区块"
+    page_marker: 'check_block',
+    icon_url: '../../assets/icons/block_light.png',
+    icon_selected_url: '../../assets/icons/block.png',
+    page_url: '../blocks/search',
+    text: '查区块'
   },
   {
-    "selectedIconPath": "assets/icons/search.png",
-    "iconPath": "assets/icons/search_light.png",
-    "pagePath": "pages/logistics/logistics",
-    "text": "查快递"
+    page_marker: 'check_logistics',
+    icon_url: '../../assets/icons/search_light.png',
+    icon_selected_url: '../../assets/icons/search.png',
+    page_url: '../logistics/logistics',
+    text: '查快递'
   },
   {
-    "selectedIconPath": "assets/icons/me.png",
-    "iconPath": "assets/icons/me_light.png",
-    "pagePath": "pages/profile/profile",
-    "text": "我的"
+    page_marker: 'profile',
+    icon_url: '../../assets/icons/me_light.png',
+    icon_selected_url: '../../assets/icons/me.png',
+    page_url: '../profile/profile',
+    text: '我的'
+  }
+]
+
+//仓库管理员
+export const wareManager = [
+  {
+    page_marker: 'check_block',
+    icon_url: '../../assets/icons/block_light.png',
+    icon_selected_url: '../../assets/icons/block.png',
+    page_url: '../blocks/search',
+    text: '查区块'
+  },
+  {
+    page_marker: 'check_logistics',
+    icon_url: '../../assets/icons/search_light.png',
+    icon_selected_url: '../../assets/icons/search.png',
+    page_url: '../logistics/logistics',
+    text: '查快递'
+  },
+  {
+    page_marker: 'profile',
+    icon_url: '../../assets/icons/me_light.png',
+    icon_selected_url: '../../assets/icons/me.png',
+    page_url: '../profile/profile',
+    text: '我的'
+  }
+]
+
+// 工作人员
+export const empolyeeWorker = [
+  {
+    page_marker: 'check_block',
+    icon_url: '../../assets/icons/block_light.png',
+    icon_selected_url: '../../assets/icons/block.png',
+    page_url: '../blocks/search',
+    text: '查区块'
+  },
+  {
+    page_marker: 'check_logistics',
+    icon_url: '../../assets/icons/search_light.png',
+    icon_selected_url: '../../assets/icons/search.png',
+    page_url: '../logistics/logistics',
+    text: '查快递'
+  },
+  {
+    page_marker: 'create_logistics',
+    icon_url: '../../assets/icons/logistics_light.png',
+    icon_selected_url: '../../assets/icons/logistics.png',
+    page_url: '../create_logistics/create_logistics',
+    text: '物流打卡'
+  },
+  {
+    page_marker: 'apply_risk',
+    icon_url: '../../assets/icons/risk_light.png',
+    icon_selected_url: '../../assets/icons/risk.png',
+    page_url: '../applyRisk/applyRisk',
+    text: '申报风险'
+  },
+  {
+    page_marker: 'profile',
+    icon_url: '../../assets/icons/me_light.png',
+    icon_selected_url: '../../assets/icons/me.png',
+    page_url: '../profile/profile',
+    text: '我的'
+  }
+]
+
+// 审核人员
+export const auditor = [
+  {
+    page_marker: 'check_block',
+    icon_url: '../../assets/icons/block_light.png',
+    icon_selected_url: '../../assets/icons/block.png',
+    page_url: '../blocks/search',
+    text: '查区块'
+  },
+  {
+    page_marker: 'check_logistics',
+    icon_url: '../../assets/icons/search_light.png',
+    icon_selected_url: '../../assets/icons/search.png',
+    page_url: '../logistics/logistics',
+    text: '查快递'
+  },
+  {
+    page_marker: 'check_apply_list',
+    icon_url: "../../assets/icons/risk_light.png",
+    icon_selected_url: "../../assets/icons/risk.png",
+    page_url: "../checkApplyList/checkApplyList",
+    text: "查审核"
+  },
+  {
+    page_marker: 'profile',
+    icon_url: '../../assets/icons/me_light.png',
+    icon_selected_url: '../../assets/icons/me.png',
+    page_url: '../profile/profile',
+    text: '我的'
+  }
+]
+
+
+
+// 系统管理员
+export const systemManager = [
+  {
+    page_marker: 'check_block',
+    icon_url: '../../assets/icons/block_light.png',
+    icon_selected_url: '../../assets/icons/block.png',
+    page_url: '../blocks/search',
+    text: '查区块'
+  },
+  {
+    page_marker: 'check_logistics',
+    icon_url: '../../assets/icons/search_light.png',
+    icon_selected_url: '../../assets/icons/search.png',
+    page_url: '../logistics/logistics',
+    text: '查快递'
+  },
+  {
+    page_marker: 'profile',
+    icon_url: '../../assets/icons/me_light.png',
+    icon_selected_url: '../../assets/icons/me.png',
+    page_url: '../profile/profile',
+    text: '我的'
   }
 ]

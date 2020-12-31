@@ -88,15 +88,14 @@ Page({
     that.setData({
       order_id: options.id
     });
-    // wx.getStorageSync({
-    //   key: 'openid',
-    //   success (res) {
-    //     console.log(res.data);
-    //     that.setData({
-    //       openid: res.data
-    //     })
-    //   }
-    // })
+    var userinfo = wx.getStorageSync('userinfo');
+    if(userinfo) {
+      var json_data = JSON.parse(userinfo);
+       // 这里定义来使用userinfo的数据
+       that.setData({
+        user_info: json_data
+      })
+    }
     wx.request({
       url: base_url+'apply/getById',
       data: {
