@@ -1,4 +1,5 @@
 // pages/applyRisk/applyRisk.js
+const app = getApp();
 Page({
 
   /**
@@ -170,6 +171,25 @@ Page({
       //   station_id: data.station.id
       // }
 
+    }
+  },
+
+    /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var g_list = app.globalData.list;
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      var tab_index = 0;
+      for(let i = 0, len=g_list.length; i < len; ++i) {
+        if(g_list[i].pagePath.indexOf("applyRisk") != -1) {
+          tab_index = i;
+        }
+      }
+      this.getTabBar().setData({
+        selected: tab_index,
+        list: g_list
+      })
     }
   }
 })

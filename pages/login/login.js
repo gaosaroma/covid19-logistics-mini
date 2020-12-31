@@ -66,7 +66,7 @@ Page({
           app.globalData.list = tab_style_map[parseInt(data.type)-1];
           console.log(app.globalData.list);
           wx.setStorageSync('userinfo', JSON.stringify(user_info));
-          wx.switchTab({
+          wx.navigateTo({
             url: '../profile/profile',
           })
         } else {
@@ -97,7 +97,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

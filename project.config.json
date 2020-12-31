@@ -39,7 +39,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.0.4",
+  "libVersion": "2.7.5",
   "appid": "wxe536ed00a8c2ecdc",
   "projectname": "covid19-logistics-mini",
   "debugOptions": {

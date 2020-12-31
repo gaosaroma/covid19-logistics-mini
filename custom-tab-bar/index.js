@@ -1,7 +1,6 @@
 const app =getApp();
 Component({
   data: {
-    
     selected: 0,
     color: "#BFC2C6",
     selectedColor: "#92B6D5",

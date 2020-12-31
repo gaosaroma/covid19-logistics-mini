@@ -1,5 +1,5 @@
 // pages/logistics/logistics.js
-const app=getApp()
+const app=getApp();
 
 Page({
 
@@ -97,9 +97,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var g_list = app.globalData.list;
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      var tab_index = 0;
+      for(let i = 0, len=g_list.length; i < len; ++i) {
+        if(g_list[i].pagePath.indexOf("logistics/logistics") != -1) {
+          tab_index = i;
+        }
+      }
       this.getTabBar().setData({
-        selected: 1 //选中效果 当前tabBar页面在list中对应的下标， 
+        selected: tab_index,
+        list: g_list
       })
     }
   },

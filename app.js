@@ -35,6 +35,5 @@ App({
   globalData: {
     base_url: 'http://10.60.43.56:8080/',
     userInfo: null,
-    list: []
   }
 })

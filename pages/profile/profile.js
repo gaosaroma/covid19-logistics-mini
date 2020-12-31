@@ -6,6 +6,44 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cur_page: 'profile',
+    tab_bar_list: [
+      {
+        page_marker: 'check_block',
+        icon_url: '../../assets/icons/block.png',
+        icon_selected_url: '../../assets/icons/block_light.png',
+        page_url: '../blocks/search',
+        text: '查区块'
+      },
+      {
+        page_marker: 'check_logistics',
+        icon_url: '../../assets/icons/search.png',
+        icon_selected_url: '../../assets/icons/search_light.png',
+        page_url: '../logistics/logistics',
+        text: '查快递'
+      },
+      {
+        page_marker: 'create_logistics',
+        icon_url: '../../assets/icons/logistics.png',
+        icon_selected_url: '../../assets/icons/logistics_light.png',
+        page_url: '../create_logistics/create_logistics',
+        text: '物流打卡'
+      },
+      {
+        page_marker: 'apply_risk',
+        icon_url: '../../assets/icons/risk.png',
+        icon_selected_url: '../../assets/icons/risk_light.png',
+        page_url: '../applyRisk/applyRisk',
+        text: '申报风险'
+      },
+      {
+        page_marker: 'profile',
+        icon_url: '../../assets/icons/me.png',
+        icon_selected_url: '../../assets/icons/me_light.png',
+        page_url: '../profile/profile',
+        text: '我的'
+      }
+    ],
     username: '',
     avatar_url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
     phone_number: '',
@@ -184,6 +222,10 @@ Page({
     }
   },
 
+  bindTabbarTap: function(e) {
+    console.log(e.currentTarget.dataset.tabindex)
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -195,12 +237,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // console.log(this.getTabBar())
-    // if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-    //   this.getTabBar().setData({
-    //     selected: 1
-    //   })
-    // }
   },
 
   /**

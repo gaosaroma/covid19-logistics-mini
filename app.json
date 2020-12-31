@@ -4,7 +4,6 @@
     "pages/applyCancel/applyCancel",
     "pages/applyRisk/applyRisk",
     "pages/checkRisk/checkRisk",
-    "custom-tab-bar/index",
     "pages/index/index",
     "pages/register/register",
     "pages/viewMyApply/viewMyApply",
@@ -21,45 +20,6 @@
     "pages/logs/logs",
     "pages/myApplyList/myApplyList"
   ],
-  "tabBar": {
-    "custom": true,
-    "color": "#BFC2C6",
-    "selectedColor": "#92B6D5",
-    "borderStyle": "white",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "selectedIconPath": "assets/icons/history.png",
-        "iconPath": "assets/icons/history_light.png",
-        "pagePath": "pages/applyCancel/applyCancel",
-        "text": "申请核销"
-      },
-      {
-        "selectedIconPath": "assets/icons/home.png",
-        "iconPath": "assets/icons/home_light.png",
-        "pagePath": "pages/applyRisk/applyRisk",
-        "text": "申请风险"
-      },
-      {
-        "selectedIconPath": "assets/icons/search.png",
-        "iconPath": "assets/icons/search_light.png",
-        "pagePath": "pages/logistics/logistics",
-        "text": "查快递"
-      },
-      {
-        "selectedIconPath": "assets/icons/me.png",
-        "iconPath": "assets/icons/me_light.png",
-        "pagePath": "pages/checkRisk/checkRisk",
-        "text": "审核风险"
-      },
-      {
-        "selectedIconPath": "assets/icons/me.png",
-        "iconPath": "assets/icons/me_light.png",
-        "pagePath": "pages/profile/profile",
-        "text": "我的"
-      }
-    ]
-  },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
   },
