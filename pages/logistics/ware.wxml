@@ -1,0 +1,49 @@
+<!--pages/logistics/ware.wxml-->
+<view class="container">
+  <view id="search-box" class="box">
+    <view class="cu-bar search bg-white">
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="请输入订单号" bindinput='getInputValue' confirm-type="search"></input>
+      </view>
+      <view class="action">
+        <button class="cu-btn bg-green shadow-blur round" bindtap="search">搜索</button>
+      </view>
+    </view>
+  </view>
+  <view id="card-list" class="box">
+    <view class="cu-card case" wx:for="{{logistcs_list}}" wx:key>
+      <view class="cu-item shadow" bindtap="showDetail" data-idx="{{index}}">
+        <view class="cu-tag  {{item.riskLevel==0?'bg-green':(item.riskLevel==1?'bg-orange':'bg-red')}}">{{item.riskLevel==0?"无风险":(item.riskLevel==1?"低风险":"高风险")}}</view>
+        <view class="margin-top-sm solid-bottom">
+          <view class="text-content margin-left-sm text-lg">运单号：{{item.orderId}}</view>
+        </view>
+        <view class="bg-white padding-xs">
+          <view class="cu-steps">
+            <view class="cu-item padding-top-sm padding-left-sm" wx:for="{{item.src_dest_list}}" wx:key>
+              <view style="font-size:36rpx;" data-index="{{index + 1}}" class="text-black">{{item.city}}</view>
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+          <view class="margin-top-sm solid-bottom text-grey">
+            <view class=" padding-xs align-center">
+              <view class="text-content margin-left-sm">当前状态：{{item.status==1?"运输中":"已签收"}}</view>
+              <view class="text-content margin-left-sm">当前节点：{{item.currAddress}}</view>
+              <view class="text-content margin-left-sm">到达时间：{{item.arrivingTime}}</view>
+              <view class="text-content margin-left-sm">区块号（区块哈希）：{{item.riskBlock}}</view>
+            </view>
+        </view>
+          
+      </view>
+      </view>
+      </view>
+  </view>
+  <view class="cu-bar tabbar bg-white my-tab-design" style="bottom: 0px; position:absolute; width: 100%; padding-bottom: 22px; padding-top: 6px; height: auto;">
+    <view class="action" wx:for="{{tab_bar_list}}">
+      <view bindtap="bindTabbarTap" class="cuIcon-cu-image" data-tabIndex="{{index}}">
+        <image src="{{cur_page == item.page_marker?item.icon_selected_url:item.icon_url}}"></image>
+      </view>
+      <view class="{{cur_page == item.page_marker?'text-orange':'text-grey'}}">{{item.text}}</view>
+    </view>
+  </view>
+</view>

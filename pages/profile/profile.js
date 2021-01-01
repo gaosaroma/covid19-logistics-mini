@@ -47,7 +47,7 @@ Page({
         color: 'orange',
         badge: 22,
         name: '我的仓库',
-        link: ''
+        link: '../logistics/ware'
       }, 
       {
         id: 5,
@@ -55,7 +55,7 @@ Page({
         color: 'orange',
         badge: 22,
         name: '查看仓库',
-        link: ''
+        link: '../logistics/ware'
       }, 
       {
         id: 6,

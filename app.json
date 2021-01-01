@@ -18,7 +18,8 @@
     "pages/profile/profile",
     "pages/order/order",
     "pages/logs/logs",
-    "pages/myApplyList/myApplyList"
+    "pages/myApplyList/myApplyList",
+    "pages/logistics/ware"
   ],
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
@@ -33,7 +34,7 @@
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {
-      "desc": "你的地理位置将用于获取你的详细地址" 
+      "desc": "你的地理位置将用于获取你的详细地址"
     }
   }
 }

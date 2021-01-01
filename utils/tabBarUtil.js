@@ -83,6 +83,13 @@ export const empolyeeWorker = [
     text: '查区块'
   },
   {
+    page_marker: 'check_ware',
+    icon_url: '../../assets/icons/ware_light.png',
+    icon_selected_url: '../../assets/icons/ware.png',
+    page_url: '../logistics/ware',
+    text: '查仓库'
+  },
+  {
     page_marker: 'check_logistics',
     icon_url: '../../assets/icons/search_light.png',
     icon_selected_url: '../../assets/icons/search.png',
