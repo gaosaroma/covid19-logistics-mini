@@ -47,7 +47,7 @@ Page({
     wx.request({
       url: globalData.base_url+'apply/submitRisk',
       data: {
-        submitter: that.user_info.work_id,
+        submitter: that.user_info.user_id,
         // 'submitter': 7,
         'logisticsId': data.logistics_id, //其实是物流编号，订单的一部分
         'stationId': 1,

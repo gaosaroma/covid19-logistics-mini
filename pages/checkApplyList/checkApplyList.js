@@ -98,10 +98,11 @@ Page({
         user_info: json_data
       })
     }
+    console.log(that.data);
     wx.request({
       url: base_url+'apply/pending',
       data: {
-        'id': that.data.user_info.work_id
+        'id': that.data.user_info.user_id
       },
       header: {
         'content-type': 'application/json'

@@ -112,7 +112,7 @@ Page({
     wx.request({
       url: globalData.base_url+'apply/submitRisk',
       data: {
-        'submitter': data.user_info.work_id,
+        'submitter': data.user_info.user_id,
         // 'submitter': 7,
         'logisticsId': data.logistics_id,
         'stationId': data.user_info.station_id,
