@@ -9,18 +9,20 @@
 </view>
 
 <view class="login-con margin-top-lg">
-  <view class="cu-form-group margin-top">
-		<view class="title">姓名</view>
-		<input value="{{form_name}}" bindinput="bindNameInput" placeholder="请输入真实姓名"></input>
-  </view>
 
-  <view class="cu-form-group">
+
+  <view class="cu-form-group margin-top">
 		<view class="title">注册身份</view>
 		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker">
 				{{picker[index]}}
 			</view>
 		</picker>
+	</view>
+	
+	<view class="cu-form-group">
+		<view class="title">{{name_text}}</view>
+		<input style="text-align:right;" value="{{form_name}}" bindinput="bindNameInput" placeholder="请输入{{name_text}}"></input>
   </view>
 
   <view class="cu-form-group">
@@ -32,8 +34,8 @@
 		</picker>
   </view>
 
-	<view class="cu-form-group">
-		<view class="title">联系方式</view>
+	<view class="cu-form-group" wx:if="{{index==1}}">
+		<view class="title">联系人</view>
 		<input placeholder=""></input>
   </view>
   
@@ -52,7 +54,7 @@
 	<view class="cu-form-group">
 		<view class="title">验证码</view>
 		<input placeholder=""></input>
-		<button class="cu-btn bg-orange shadow">获取验证码</button>
+		<button bindtap="bindMessageCodeTap" class="cu-btn bg-{{btn_color}} shadow">{{msg_text}}</button>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">登录密码</view>

@@ -8,13 +8,16 @@ Page({
    */
   data: {
     modalName: null,
+    name_text: '用户姓名',
     region: ['广东省', '广州市', '海珠区'],
     index: 0,
     picker: ['普通用户', '供应商'],
     registering: false,
     form_name: '',
     form_phone: '',
-    form_pwd: ''
+    form_pwd: '',
+    btn_color: 'orange',
+    msg_text: '获取验证码'
   },
 
   bindNameInput: function(e) {
@@ -36,6 +39,31 @@ Page({
     this.setData({
       form_pwd: input_context
     })
+  },
+
+  bindMessageCodeTap: function(e) {
+    if(this.data.btn_color == 'grey') {
+      return;
+    }
+    this.setData({
+      btn_color: 'grey'
+    });
+    var timeRemaining = 60;
+    var self = this;
+    var interval = setInterval(function(params) {
+      if(timeRemaining > 0) {
+        timeRemaining -= 1;
+        self.setData({
+          msg_text: timeRemaining+ '秒后重新获取'
+        })
+      } else {
+        self.setData({
+          msg_text: '获取验证码',
+          btn_color: 'orange' 
+        })
+        clearInterval(interval);
+      }
+    }, 1000)
   },
 
   bindRegisterTap: function(e) {
@@ -104,10 +132,12 @@ Page({
     })
   },
   PickerChange(e) {
+    var index = e.detail.value;
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      name_text: index == 0 ? '用户姓名' : '店铺名称'
     })
-    console.log(this.data.index)
+    
   },
   bindLoginTap: function(e) {
     wx.navigateBack({});
