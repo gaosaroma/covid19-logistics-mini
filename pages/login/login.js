@@ -59,9 +59,9 @@ Page({
             work_id: 'SF2017060' + data.id,
             user_name: data.username,
             user_phone: data.telephone,
-            station_type: data.station.transportationType,
-            station_name: data.station.name,
-            station_id: data.station.id
+            station_type: data.station == undefined? -1 : data.station.transportationType,
+            station_name: data.station == undefined? '' : data.station.name,
+            station_id: data.station == undefined? -1 : data.station.id
           }
           app.globalData.tab_list = tab_style_map[parseInt(data.type)-1];
           console.log(app.globalData.tab_list);
@@ -71,6 +71,7 @@ Page({
             url: '../profile/profile',
           })
         } else {
+          console.log(e)
           console.log('login failed!');
         }
       },

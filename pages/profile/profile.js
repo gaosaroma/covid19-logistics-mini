@@ -111,7 +111,7 @@ Page({
         color: 'orange',
         badge: 22,
         name: '查看订单',
-        link: ''
+        link: '../logistics/logistics'
       },
       {
         id: 13,
@@ -187,7 +187,7 @@ Page({
               identity: data.type,
               identity_name: data.typeName,
               work_id: 'SF2017060' + data.id,
-              node: data.station.name,
+              node: data.station == undefined? '': data.station.name,
               username: data.username,
               module_index: identity_map[parseInt(data.type)-1]
             })
