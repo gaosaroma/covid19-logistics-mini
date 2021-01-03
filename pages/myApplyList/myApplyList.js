@@ -86,7 +86,7 @@ Page({
     wx.request({
       url: base_url+'apply/bySubmitter',
       data: {
-        'id': that.data.user_info.work_id
+        'id': that.data.user_info.user_id
       },
       header: {
         'content-type': 'application/json'
