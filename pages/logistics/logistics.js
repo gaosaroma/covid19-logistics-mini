@@ -21,11 +21,23 @@ Page({
   },
 
   init: function(){
-    let url=app.globalData.base_url+'logistics/list'
     let user_id=0;
+    let user_type =0;
+    let url= '';
     user_id =  JSON.parse(wx.getStorageSync('userinfo'))["user_id"];
+    console.log("user_id"+user_id)
+    user_type = JSON.parse(wx.getStorageSync('userinfo'))["identity"];
+    if(user_type==1){ // 普通用户
+      url=app.globalData.base_url+'logistics/normalUser'
+    }else if(user_type==2){ // 供应商
+      url=app.globalData.base_url+'logistics/supplier'
+    }else{ // 工作人员
+      url=app.globalData.base_url+'logistics/list'
+    }
     
     console.log("user_id is "+user_id)
+    console.log("user_type is "+user_type)
+    console.log("url is "+url)
     var that=this
     wx.request({
       url: url,
@@ -45,38 +57,6 @@ Page({
 
       },
       complete(res){
-        // that.setData({
-        //   logistcs_list:[
-        //     {logistics_id: "SF8888888",
-        //     src_dest_list: [{
-        //       city: '深圳市',
-        //       name:'DJI旗舰店'
-        //     }, {
-        //       city: '上海市',
-        //       name:'栎鹏'
-        //     }, ],
-        //     state: "运输中",
-        //     cur_addr: "上海嘉定宝园营业点",
-        //     arrival_time: "2020-12-03 03:53",
-        //     risk_block: "asdjajfaljaoi323fel32alk3",
-        //     risk:"无风险"},
-        //     {
-        //       logistics_id: "SF9999999",
-        //       src_dest_list: [{
-        //         city: '长沙市',
-        //         name:'晓薇'
-        //       }, {
-        //         city: '上海市',
-        //         name:'贺老师'
-        //       }, ],
-        //       state: "运输中",
-        //       cur_addr: "上海嘉定宝园营业点",
-        //       arrival_time: "2020-12-13 04:53",
-        //       risk_block: "gjlekjfaljaoi323fel32alk3",
-        //       risk:"无风险"
-        //     }
-        //     ]
-        // })
       
       }
     })

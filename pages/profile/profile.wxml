@@ -14,7 +14,7 @@
     <view>
       <text class='cuIcon-addressbook lg text-gray margin-right-sm'></text>
       <text>{{identity_name}}</text>
-      <text class="margin-left-lg">工号：{{work_id}}</text>
+      <text class="margin-left-lg" wx:if="{{identity!=1}}">工号：{{work_id}}</text>
     </view>
     <view>
       <text class='cuIcon-home lg text-gray margin-right-sm'></text>

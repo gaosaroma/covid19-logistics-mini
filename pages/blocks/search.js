@@ -131,6 +131,7 @@ Page({
         data.forEach(element => {
           element.snapshot_idx=snapshot_idx
         });
+        console.log(data)
 
         that.setData({
           logistics_list:data,

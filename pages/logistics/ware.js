@@ -22,14 +22,7 @@ Page({
   init: function(){
     let url=app.globalData.base_url+'logistics/byStation'
     let user_id=0;
-    wx.getStorage({
-      key: 'user_info',
-      success (res) {
-        console.log(res.data)
-        user_id = (JSON.parse(res.data)).user_id
-        
-      }
-    })
+    user_id =  JSON.parse(wx.getStorageSync('userinfo'))["user_id"];
     console.log("user_id is "+user_id)
     var that=this
     wx.request({

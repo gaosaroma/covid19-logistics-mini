@@ -42,7 +42,7 @@
               <view class="cu-tag bg-{{item.riskType==1?'orange':'red'}} light round margin-top-sm">{{item.riskType==1?'中风险':'高风险'}}</view>
             </view>
           </view>
-          <image class="flex-sub basis-xs margin-left-sm" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+          <image class="flex-sub basis-xs margin-left-sm" src="../../assets/imgs/pdf.png" mode="aspectFill"></image>
         </view>
       </view>
     </view>
@@ -70,7 +70,7 @@
               <view class="cu-tag bg-grey light round margin-top-sm">{{item.submitComment}}</view>
             </view>
           </view>
-          <image class="flex-sub basis-xs margin-left-sm" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+          <image class="flex-sub basis-xs margin-left-sm" src="../../assets/imgs/pdf.png" mode="aspectFill"></image>
         </view>
       </view>
     </view>

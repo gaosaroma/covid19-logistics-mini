@@ -8,7 +8,7 @@
 				<view class="margin-top-sm solid-bottom">
 					<view class="text-content margin-left-sm text-lg" style="font-weight:bold;">数据来源：{{item.from_block==1?'区块链':'后端数据库'}}</view>
 					<view class="text-content margin-left-sm text-lg" wx:if="{{item.fromBlock}}">区块高度：{{item.block_height}}</view>
-					<view class="text-content margin-left-sm text-lg" wx:if="{{item.fromBlock}}">区块哈希：{{item.block_hash}}</view>
+					<view class="text-content margin-left-sm text-lg" wx:if="{{item.fromBlock}}">区块编号：{{item.block_hash}}</view>
 					<view class="text-content margin-left-sm text-lg">订单号：{{item.orderId}}</view>
 					<view class="text-content margin-left-sm text-lg">快照编号：{{item.snapshotIdx}}</view>
 					<view class="text-content margin-left-sm text-lg">快照风险：{{item.risk==0?'无风险':(item.risk==1?'低风险':'高风险')}}</view>

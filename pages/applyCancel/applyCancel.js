@@ -47,7 +47,7 @@ Page({
     wx.request({
       url: globalData.base_url+'apply/submitRisk',
       data: {
-        submitter: that.user_info.user_id,
+        submitter: data.user_info.user_id,
         // 'submitter': 7,
         'logisticsId': data.logistics_id, //其实是物流编号，订单的一部分
         'stationId': 1,
@@ -141,7 +141,8 @@ Page({
       var json_data = JSON.parse(userinfo);
        // 这里定义来使用userinfo的数据
        that.setData({
-        user_info: json_data
+        user_info: json_data,
+        station_name: json_data.station_name
       })
     }
   }

@@ -162,6 +162,8 @@ Page({
     if(userinfo) {
       var json_data = JSON.parse(userinfo);
       this.setData({
+        supplier_id: json_data.user_name,
+        contact_s: json_data.user_phone,
         user_id: json_data.user_id,
       })
     } else {
@@ -176,6 +178,7 @@ Page({
     this.setData({
       modalName: null
     })
+    wx.navigateBack({});
   },
 
   /**

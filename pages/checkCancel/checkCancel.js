@@ -15,19 +15,19 @@ Page({
     picker: ['审核通过', '驳回申请'],
     check_reply: '',
     cardCur: 0,
-    photo_list: [{
-      id: 0,
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
-      id: 1,
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
-      id: 3,
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }],
+    // photo_list: [{
+    //   id: 0,
+    //   url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+    // }, {
+    //   id: 1,
+    //     url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+    // }, {
+    //   id: 2,
+    //   url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+    // }, {
+    //   id: 3,
+    //   url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+    // }],
   },
 
   PickerChange(e) {
@@ -63,7 +63,7 @@ Page({
       method: 'POST',
       success: function(result) {
         console.log(result);
-        if (code==200){
+        if (result.data.code==200){
           wx.showToast({
             title: '审核成功',
             icon: 'succes',
@@ -110,10 +110,11 @@ Page({
         var reply = result.data.resultObjects[0];
         that.setData({
           transportation : reply.stationName,
-          risk_level : reply.riskType==1?'中风险':'高风险',
-          risk_color : reply.riskType==1?'orange':'red',
+          risk_level : reply.riskType==1?'低风险':(reply.riskType==0?'无风险':'高风险'),
+          risk_color : reply.riskType==1?'orange':(reply.riskType==0?'green':'red'),
           cancel_method : reply.submitComment,
-          apply_time : reply.submitTime
+          apply_time : reply.submitTime,
+          applier:reply.submitter,
         })
       }
     })

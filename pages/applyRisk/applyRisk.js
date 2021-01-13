@@ -19,7 +19,7 @@ Page({
     ],
     transportationIndex: [0, 0, 0],
     index: null,
-    picker: ['中风险', '高风险'],
+    picker: ['低风险', '高风险'],
     imgList: [],
   },
 
@@ -157,7 +157,8 @@ Page({
     if(userinfo) {
       var json_data = JSON.parse(userinfo);
       that.setData({
-        user_info: json_data
+        user_info: json_data,
+        station_name: json_data.station_name
       })
       // 这里使用userinfo中的data
 

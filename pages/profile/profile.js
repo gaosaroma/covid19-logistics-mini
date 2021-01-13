@@ -152,6 +152,14 @@ Page({
         badge: 22,
         name: '查看申请',
         link: '../checkApplyList/checkApplyList'
+      },
+      {
+        id: 18,
+        icon: 'attentionfill',
+        color: 'orange',
+        badge: 22,
+        name: '我的申请',
+        link: '../viewMyApply/viewMyApply'
       }
     ],
     identity_map : [
@@ -159,7 +167,7 @@ Page({
       [1, 6, 7, 11, 12],
       [1, 4, 13, 10, 14, 15],
       [1, 3, 4, 8, 9, 14, 15],
-      [1, 17, 15, 16],
+      [1, 17, 16],
       [1, 5, 10, 13, 17, 14, 16]
    ],
     module_index: []

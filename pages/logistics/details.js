@@ -232,8 +232,8 @@ Page({
     markers.push(marker)
     
     // 地图锚点
-    var first= this.data.time_line[0]
-    var last = this.data.time_line[this.data.time_line.length-2]
+    var first= this.data.time_line[0].coordinate.length==0?this.data.time_line[1]:this.data.time_line[0]
+    var last = this.data.time_line[this.data.time_line.length-1]
     let long1 = ((first.coordinate)[0]).longitude
     let long2 = ((last.coordinate)[0]).longitude
     let lat1 = ((first.coordinate)[0]).latitude

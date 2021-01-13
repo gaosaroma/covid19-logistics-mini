@@ -14,7 +14,7 @@
   <view id="logistics-card-list" class="box" wx:if="{{logistics_list.length>0}}">
     <view class="cu-card case" wx:for="{{logistics_list}}" wx:key>
       <view class="cu-item shadow" bindtap="showDetail" id="{{index}}" data-idx="{{index}}">
-        <view class="cu-tag {{item.riskLevel==0?'bg-green':(item.riskLevel==1?'bg-orange':'bg-red')}}">快照{{item.riskLevel==0?"无风险":(item.riskLevel==1?"低风险":"高风险")}}</view>
+        <view class="cu-tag {{item.risk==0?'bg-green':(item.risk==1?'bg-orange':'bg-red')}}">快照{{item.risk==0?"无风险":(item.risk==1?"低风险":"高风险")}}</view>
         <view class="margin-top-sm solid-bottom">
           <view class="text-content margin-left-sm text-lg">区块号：{{item.block_id}}</view>
         </view>

@@ -28,9 +28,9 @@
           <view class="margin-top-sm solid-bottom text-grey">
             <view class=" padding-xs align-center">
               <view class="text-content margin-left-sm">当前状态：{{item.status==1?"运输中":"已签收"}}</view>
-              <view class="text-content margin-left-sm">当前节点：{{item.currAddress}}</view>
+              <view class="text-content margin-left-sm">当前节点：{{item.stationName}}</view>
               <view class="text-content margin-left-sm">到达时间：{{item.arrivingTime}}</view>
-              <view class="text-content margin-left-sm">区块号（区块哈希）：{{item.riskBlock}}</view>
+              <view class="text-content margin-left-sm">区块编号：{{item.riskBlock}}</view>
             </view>
         </view>
           

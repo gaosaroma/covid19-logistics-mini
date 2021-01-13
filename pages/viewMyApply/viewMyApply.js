@@ -12,19 +12,19 @@ Page({
     index: null,
     picker: ['审核通过', '驳回申请'],
     cardCur: 0,
-    photo_list: [{
-      id: 0,
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
-      id: 1,
-        url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
-      id: 3,
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }],
+    // photo_list: [{
+    //   id: 0,
+    //   url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+    // }, {
+    //   id: 1,
+    //     url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+    // }, {
+    //   id: 2,
+    //   url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+    // }, {
+    //   id: 3,
+    //   url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+    // }],
     numList: [{
       name: '待审核'
     }, {
@@ -92,11 +92,11 @@ Page({
         }
         that.setData({
           transportation : reply.stationName,
-          risk_level : reply.riskType==1?'中风险':'高风险',
-          risk_color : reply.riskType==1?'orange':'red',
+          risk_level : reply.riskType==1?'低风险':(reply.riskType==0?'无风险':'高风险'),
+          risk_color : reply.riskType==1?'orange':(reply.riskType==0?'green':'red'),
           risk_description : reply.submitComment,
           apply_time : reply.submitTime,
-          check_reply: reply.auditComment,
+          check_reply: reply.auditComment==null?'暂无':reply.auditComment,
           check_result: result,
           check_result_color: color,
           numList: num_list,
