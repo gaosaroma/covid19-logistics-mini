@@ -36,6 +36,6 @@ App({
     base_url: 'http://172.20.10.3:8080/',
     userInfo: null,
     tab_list: [],
-    isSame:true
+    isSame:1
   }
 })

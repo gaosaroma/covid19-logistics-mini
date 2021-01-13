@@ -18,6 +18,14 @@ Page({
    */
   onLoad: function (options) {
     this.init()
+    if(app.globalData.isSame==0){
+      wx.showToast({
+        title: '警告：数据篡改',
+        icon:'none',
+        duration:3000,
+        mask:true
+      })
+    }
   },
 
   init: function(){

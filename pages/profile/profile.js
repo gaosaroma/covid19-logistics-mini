@@ -177,6 +177,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 轮询变化
+    this.pollingIsSame();
+    
     var userinfo = wx.getStorageSync('userinfo');
     var identity_map = this.data.identity_map;
     var self = this;
@@ -284,5 +287,40 @@ Page({
     } else {
       return;
     }
+  },
+  polling: function(){
+    wx.request({
+      url: app.globalData.base_url + 'logistics/isSame',
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'POST',
+      data: {
+      },
+      success: function(e) {
+        if (e.data.code == 200) {
+          let data = e.data.resultObjects[0];
+        
+          if(data.isSame!=app.globalData.isSame){
+            console.log("须修改...");
+            app.globalData.isSame = data.isSame;
+          }
+        } else {
+          console.log(e)
+          console.log('polling failed!');
+        }
+      },
+      fail: function(e) {
+        console.log('wx.request error!');
+      }
+    })
+  
+  },
+  pollingIsSame: function (){
+    let that =this;
+    setInterval(function () {
+      that.polling();
+      console.log("请求1秒触发一次");
+    }, 2000)
   }
 })
